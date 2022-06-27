@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/ivfgeo
+END
+ivfgeo_merge.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/ivfgeo/ivfgeo_merge.c
+END
+ivfgeo.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/ivfgeo/ivfgeo.c
+END
+ivfgeo_pq.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/ivfgeo/ivfgeo_pq.c
+END
+ivfgeo.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/ivfgeo/ivfgeo.h
+END
+ivfgeo_display.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/ivfgeo/ivfgeo_display.c
+END
+ivfgeo_pq.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/ivfgeo/ivfgeo_pq.h
+END
+ivfgeo_create.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/ivfgeo/ivfgeo_create.py
+END
+ivfgeo_query.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/ivfgeo/ivfgeo_query.py
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/ivfgeo/Makefile
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/ivfgeo/README
+END
+ivfgeo_summary.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/ivfgeo/ivfgeo_summary.c
+END
+ivfgeo.swg
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/ivfgeo/ivfgeo.swg
+END

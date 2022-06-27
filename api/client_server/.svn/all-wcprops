@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/bigimbaz/!svn/ver/113/tags/for-milpix-v2/client_server
+END
+client.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/bigimbaz/!svn/ver/113/tags/for-milpix-v2/client_server/client.py
+END
+prepare_imbase.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/bigimbaz/!svn/ver/113/tags/for-milpix-v2/client_server/prepare_imbase.py
+END
+test_imbase.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/bigimbaz/!svn/ver/113/tags/for-milpix-v2/client_server/test_imbase.py
+END
+imbase.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/bigimbaz/!svn/ver/113/tags/for-milpix-v2/client_server/imbase.py
+END
+test_protocol.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/bigimbaz/!svn/ver/113/tags/for-milpix-v2/client_server/test_protocol.py
+END
+utils.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/bigimbaz/!svn/ver/113/tags/for-milpix-v2/client_server/utils.py
+END
+protocol.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/bigimbaz/!svn/ver/113/tags/for-milpix-v2/client_server/protocol.py
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/bigimbaz/!svn/ver/113/tags/for-milpix-v2/client_server/README.txt
+END
+invfile.swg
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/bigimbaz/!svn/ver/113/tags/for-milpix-v2/client_server/invfile.swg
+END
+config.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/bigimbaz/!svn/ver/113/tags/for-milpix-v2/client_server/config.py
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/bigimbaz/!svn/ver/113/tags/for-milpix-v2/client_server/Makefile
+END
+server.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/bigimbaz/!svn/ver/113/tags/for-milpix-v2/client_server/server.py
+END

@@ -1,0 +1,34 @@
+#sim-area {
+    scroll-y: none;
+    scroll-x: none;  
+    overflow: auto;
+    position: relative; 
+    background-color: #6D3353; 
+    width:199px; 
+    height:355px; 
+    margin-top:75px;   
+    margin-left: 22px;
+}
+
+#sim-logo {
+    position: relative; 
+    margin-top: 80%; 
+    text-align: center;
+    scroll-x: none;  
+}
+
+#sim-website {
+    position: relative; 
+    margin-top: 60%; 
+    text-align: center;
+    color:white;
+    scroll-x: none;  
+}
+
+#sim-container {
+    overflow: auto;
+    background-image:url(/static/img/yarilab_app.png);
+    background-repeat:no-repeat;
+    width:240px; 
+    height:500px;
+}

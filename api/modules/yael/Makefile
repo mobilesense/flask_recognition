@@ -1,0 +1,77 @@
+.SUFFIXES: .c .o .swg 
+
+include ../compile/makefile.inc
+
+CC=gcc 
+
+all: test_pca libyael.a libyael.$(SHAREDEXT) _yael.so
+
+
+
+#############################
+# Various  
+
+libyael.a: matrix.o vector.o nn.o clustering.o sorting.o machinedeps.o 
+	ar r libyael.a $^
+
+libyael.$(SHAREDEXT): matrix.o vector.o nn.o clustering.o sorting.o machinedeps.o 
+	gcc $(LDFLAGS) $(SHAREDFLAGS) -o libyael.$(SHAREDEXT) $^ $(LAPACKLDFLAGS) $(THREADLDFLAGS)
+
+# gcc -shared -Wl,-soname,libyael.so.0 -o libyael.so.0.1.0 $^ $(LAPACKLDFLAGS) $(THREADLDFLAGS)
+# ln -sf libyael.so.0.1.0 libyael.so.0 
+# ln -sf libyael.so.0.1.0 $@
+
+.c.o:
+	$(CC) $(CFLAGS) -c $< -o $@ $(FLAGS) $(EXTRACFLAGS)
+
+nn.o: EXTRACFLAGS=$(LAPACKCFLAGS) $(THREADCFLAGS)
+
+matrix.o: EXTRACFLAGS=$(LAPACKCFLAGS) $(THREADCFLAGS)
+
+
+clustering.o: EXTRACFLAGS=$(THREADCFLAGS)
+
+yael_wrap.o: EXTRACFLAGS=$(PYTHONCFLAGS)
+
+test_pca: test_pca.o vector.o matrix.o
+	$(CC) -o $@ $^ $(LDFLAGS) $(LAPACKLDFLAGS) $(THREADLDFLAGS) 
+
+mmap_and_lock: mmap_and_lock.c
+	$(CC) $(CFLAGS) -o $@ $<
+
+
+
+#############################
+# Python wrapper 
+
+
+yael_wrap.c : yael.swg nn.h clustering.h common.swg sorting.h matrix.h vector.h machinedeps.h 
+	$(SWIG) -I.. $< 
+
+_yael.so: yael_wrap.o 
+	$(CC) $(LDFLAGS) -o $@ $(WRAPLDFLAGS) $^ $(PYTHONLDFLAGS) $(LAPACKLDFLAGS) $(THREADLDFLAGS) $(YAELLDFLAGS)
+
+#############################
+# Dependencies  
+
+# for i in *.c ; do cpp -I.. -MM $i; done
+
+clustering.o: clustering.c clustering.h vector.h nn.h machinedeps.h \
+  sorting.h
+fvecfile.o: fvecfile.c
+machinedeps.o: machinedeps.c machinedeps.h
+matrix.o: matrix.c vector.h matrix.h
+nn.o: nn.c vector.h nn.h sorting.h
+sorting.o: sorting.c sorting.h machinedeps.h
+test_pca.o: test_pca.c vector.h matrix.h
+timer.o: timer.c timer.h
+vector.o: vector.c vector.h
+
+
+
+indent: generic_hash_table.c fast_alloc.c
+	$(INDENT) $^
+
+clean:
+	rm -f libyael.a libyael.$(SHAREDEXT)* *.o yael.py *.pyc yael_wrap.c _yael.so test_pca
+

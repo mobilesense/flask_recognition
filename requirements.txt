@@ -1,0 +1,10 @@
+flask
+flask-login
+flask-sqlalchemy
+flask-mail
+flask-storage
+flask-paginate
+flask-whooshalchemy
+flask-wtf
+passlib
+python_helper

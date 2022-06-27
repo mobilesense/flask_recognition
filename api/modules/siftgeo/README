@@ -1,0 +1,68 @@
+This folder contains basic code to handle descriptors. There is
+utility code and a few interfaces to those.
+
+
+Utility files
+=============
+
+* siftgeo.h siftgeo.c
+
+Various functions on descriptor files and structures, including
+alloc/free, I/O, sorting/filtering.  Descriptor files are a
+concatenation of descriptor structures without a header. Three
+descriptor structures are defined :
+
+siftgeo(0): geometic information (position, affine matrix, orientation
+of the point) + arbitrary size-descriptor in a byte array
+
+vwgeo(1): geometric information + visual word index -> this format is
+obsolete and should not be used anymore (use vwsgeo instead)
+
+vwsgeo(2): geometric information + visual word index + binary signature
+
+The number in brackets is the fmt argument of the I/O functions
+
+* siftgeo_binarize.{c,h}
+
+Functions for Hamming embedding, e.g., computation of binary signatures. 
+
+* siftgeo_nn.{c,h}
+
+Functions to handle siftgeo descriptors. By contrast to siftgeo.{c,h}, 
+the functions implemented here depends on ../utils/nn.h
+
+
+Command-line interfaces
+=======================
+
+* cluster.c, cluster_mpi.c
+
+Computes the clusters from a dataset. Also generate the parameters 
+for Hamming Embedding. 
+
+* ann_vw.c
+
+Generate the structure for approximate assignment of visual words
+
+* siftgeo_disp.c
+
+Displays the content of a descriptor file
+
+* siftgeo_tool.py (in ../scripts)
+
+This scripts performs different operations on siftgeo/vwsgeo files, 
+including display, extraction, sort and conversion. 
+See its self-contained documentation. 
+
+
+Python interface & utilities
+============================
+
+* siftgeo.swg
+
+Generates a python interface for the C-functions in the library
+
+
+
+
+

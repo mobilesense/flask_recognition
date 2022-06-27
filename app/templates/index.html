@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab index base content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Yarilab</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" />        
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" /> 
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>            
+        <script src="/static/js/app.js"></script>
+        <script src="/static/js/bootstrap-youtube-modal.js"></script>    
+        <script src="/static/js/jquery-queryParser.js"></script>            
+        <script src="/static/js/jquery.nicescroll.min.js"></script>                            
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+        {% include "/header.html" %}
+        <div class="jumbotron masthead">
+          <div class="container" id="index-content">
+            <h1>Yari</h1>
+            <p>Linking the real <br>to the digital world</p>
+	    <!--<p>Bringing Snap-to-buy feature <br>to every mobile app</p>-->
+            <p>
+              <a href="/demo" class="btn btn-primary btn-large" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Download', 'Download 2.3.2']);">Start exploring</a>
+            </p>
+            <ul class="masthead-links">
+              <li>
+                Beta version
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- facebook like -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=169739286489497";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <!-- end facebook like -->
+
+        <div class="bs-docs-social">
+          <div class="container">
+            <ul class="bs-docs-social-buttons">      
+              <li>
+                <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true">
+                </div>       
+              </li>
+              <li class="follow-btn">
+                <iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/follow_button.1382126667.html#_=1382810250316&amp;id=twitter-widget-1&amp;lang=en&amp;screen_name=twbootstrap&amp;show_count=true&amp;show_screen_name=true&amp;size=m" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 239px; height: 20px; "></iframe>
+              </li>
+              <li class="tweet-btn">
+                <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.1382126667.html#_=1382810250312&amp;count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Fgetbootstrap.com%2F2.3.2%2F&amp;related=mdo%3ACreator%20of%20Twitter%20Bootstrap&amp;size=m&amp;text=Bootstrap&amp;url=http%3A%2F%2Ftwbs.github.com%2Fbootstrap%2F&amp;via=twbootstrap" class="twitter-share-button twitter-tweet-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 108px; height: 20px; "></iframe>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="marketing">
+            <h1>Introducing Yari.</h1>
+            <p class="marketing-byline">Need to link your real world marketing channels<br> (catalogs, magazines, newspapers, flyers, digital signage ads, ..)<br> to mCommerce ? Look no further.</p>
+            
+            <div style="text-align:center; ">
+                <a id="hp-video" class="fade-button" href="http://www.youtube.com/watch?v=t99BfDnBZcI" data-width="640" data-height="360" >
+           		    <img alt="Watch Yarilab presentation now!" src="/static/img/btnplay.png">
+           		</a>                
+           		<br><br>
+
+                <!-- Video / Generic Modal -->
+                <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-hidden="true" style="width: 670px;
+height: 390px;left: 45%;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body" style="width:100%; height:auto;">
+                            <!-- content dynamically inserted -->
+                            </div>
+                        </div>
+                    </div>
+                </div>           		                
+            </div>          
+          </div><!-- ./marketing -->
+          <hr>  
+
+          <div class="row">
+            <article class="about-us-index span4">
+                <h3>About Us</h3>
+                <div class="txt-1"> We are experts in both Machine Learning and Computer Vision fields. </div>
+                <p>We are comming from research labs, our strongth comes in offering state of the art advancement in content based image recognition. Discover our managing <a href="/about">team</a></p>
+            </article>
+            <article class="about-us-index span4">
+                <h3>Tweets</h3>
+                <div id="tweets-feed" style="height:250px;">
+                    <a class="twitter-timeline" href="https://twitter.com/Yarilab" data-widget-id="531564315195629568">Tweets de @Yarilab</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                </div><!-- end tweets -->
+            </article>
+            <article class="about-us-index  span4">
+                <h3>Featured <span>News</span></h3>
+                <ul class="list-news">
+                    <li>
+                        <div class="date-comment">
+                            <time datetime="2015-01-01"> 01 <strong>Jan'15</strong> </time>
+                            <a href="#" class="comment"><span></span></a> 
+                        </div>
+                        <div class="overflow">				
+                            <div class="txt-1"><a href="#">Yarilab Beta version released</a></div>	
+                            <p>Let the story begin! We released our beta version first day of the year. We will keep you in touch with our product updates.</p>                        
+                        </div>
+                    </li>
+                    <li>
+                        <div class="date-comment">
+                            <time datetime="2015-01-01"> 01 <strong>Jan'15</strong> </time>
+                            <a href="#" class="comment"><span></span></a> 
+                        </div>
+                        <div class="overflow">				
+                            <div class="txt-1"><a href="#">Yarilab Beta version released</a></div>	
+                            <p>Let the story begin! We released our beta version first day of the year. We will keep you in touch with our product as well as business updates.</p>                        
+                        </div>
+                    </li>                    
+                </ul>
+            </article>
+          </div> <!-- ./row -->          
+        </div>  <!-- ./container --> 
+          
+        <script>
+            $( document ).ready(function() {
+                $("ul.list-news").niceScroll({cursorcolor:"#000"});
+                $("#tweets-feed").niceScroll({cursorcolor:"#000"});                  
+            });    
+        </script>         
+        
+        {% include "/footer.html" %}
+    </body>
+</html>    
+    

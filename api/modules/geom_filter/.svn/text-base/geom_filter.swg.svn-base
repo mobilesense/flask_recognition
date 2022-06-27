@@ -1,0 +1,50 @@
+// -*- c++ -*-
+
+%module geom_filter
+
+%{
+
+#include "filter_shortlist.h"
+#include "geometry.h"
+
+
+%}
+
+%include <yael/common.swg>
+
+typedef struct pointset_s pointset_t;
+
+
+%typemap(in,numinputs=1)
+        (const char *string,int string_length) {
+  if(!PyString_Check($input)) {
+    PyErr_SetString(PyExc_TypeError,"need string");
+    return NULL;
+  }  
+  $2=PyString_Size($input);
+  $1=PyString_AsString($input);
+}
+
+
+
+/************************************************************
+ * Standalone C version
+ */
+
+PARALLEL_FUNCTION_PEEK(shortlist_match_points)
+PARALLEL_FUNCTION_PEEK(shortlist_match_points_exact)
+PARALLEL_FUNCTION_PEEK(shortlist_match_points_vw)
+PARALLEL_FUNCTION_PEEK(shortlist_filter_lowehough)
+
+typedef pointset_t imdesc_t;
+
+PARALLEL_FUNCTION(image_pairs_add_match_vw)
+PARALLEL_FUNCTION(image_pairs_filter_lowehough)
+
+%include "filter_shortlist.h"
+
+%include <carrays.i>
+
+%array_class(two_image_t,TwoImageArray);
+%array_class(imagematch_t,ImageMatchArray);
+

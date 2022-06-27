@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab docs content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>new project</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" />        
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" />         
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>          
+        <script src="/static/js/bootstrap-tooltip.js"></script>                  
+        <script src="/static/js/app.js"></script>  
+        <script src="/static/js/jquery.nicescroll.min.js"></script>        
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+        {% include "/header.html" %}
+        <div class="container">     
+            <br><br>
+            <h1>Image Database Management</h1>
+            <h2 class="lead">Query, Update, Annotate database </h2>
+            <div id="">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="/manage/projects/all">Update DB</a></li>
+                    <li><a href="/query">Query DB</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                </ul>
+            </div>            
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                
+                    <form role="form" method="POST" action="/manage/project/add">
+                        {{ new_project_form.hidden_tag() }}                    
+                        <h2>New project <small>declaration.</small></h2>
+                        <hr class="colorgraph">
+                        <div class="form-group {% if new_project_form.name.errors %} has-error {% endif %}">
+                            Name: 
+                            <input type="text" name="name" id="name" class="form-control input-lg" placeholder="Project name" tabindex="3">
+                            <p class="col-sm-5 help-block">
+                            {{ new_project_form.name.errors[0] }}
+                            </p>
+                        </div>
+                        <br>
+                        <div class="form-group {% if new_project_form.description.errors %} has-error {% endif %}">
+                            Description:
+                            <textarea name="description" placeholder="Project description" rows="4" cols="50"></textarea>
+                            <p class="col-sm-5 help-block">
+                            {{ new_project_form.description.errors[0] }}
+                            </p>
+                        </div>    
+                        <hr class="colorgraph">	
+                        <!--<div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Save</button>		        
+                            <button type="button" class="btn">Cancel</button>
+                        </div>-->
+    				    <div class="col-xs-12 col-md-5 col-md-offset-11"><input type="submit" value="Save" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+    				    <div class="col-xs-12 col-md-5 col-md-offset-1"><input type="button" value="Cancel" onclick="window.location='/manage/projects/all';"class="btn  btn-block btn-lg" tabindex="7"></div>         
+                    </form>   
+                </div>   
+            </div>            
+        </div>   
+        {% include "/footer.html" %}
+    </body>
+</html>       

@@ -1,0 +1,14 @@
+
+
+sudo apt-get install libmagickwand-dev imagemagick
+sudo apt-get install libmagick++-dev
+
+
+TO compile: 
+./configure
+make clean
+make
+
+
+change config_db.py path 
+change self.miko_exec path in config.py

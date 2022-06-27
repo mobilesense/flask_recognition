@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael
+END
+test_pca.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/test_pca.c
+END
+vector.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/vector.c
+END
+matrix.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/matrix.c
+END
+common.swg
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/common.swg
+END
+vector.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/vector.h
+END
+yael.swg
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/yael.swg
+END
+matrix.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/matrix.h
+END
+nn.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/nn.c
+END
+clustering.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/clustering.c
+END
+timer.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/timer.c
+END
+nn.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/nn.h
+END
+machinedeps.c
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/machinedeps.c
+END
+fvecfile.c
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/fvecfile.c
+END
+clustering.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/clustering.h
+END
+timer.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/timer.h
+END
+sorting.c
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/sorting.c
+END
+machinedeps.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/machinedeps.h
+END
+sorting.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/sorting.h
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/yael/Makefile
+END

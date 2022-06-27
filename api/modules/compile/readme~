@@ -1,0 +1,11 @@
+- change config_holidays.py path 
+- change compute_descriptors path in config.py
+
+sudo apt-get install libmagickwand-dev imagemagick
+sudo apt-get install libmagick++-dev
+
+
+TO compile: 
+./configure
+make clean
+make

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/geom_filter
+END
+test_filter_shortlist.c
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/geom_filter/test_filter_shortlist.c
+END
+filter_shortlist.c
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/geom_filter/filter_shortlist.c
+END
+geometry.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/geom_filter/geometry.h
+END
+filter_shortlist.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/geom_filter/filter_shortlist.h
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/geom_filter/README.txt
+END
+geom_filter.swg
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/geom_filter/geom_filter.swg
+END
+geometry.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/geom_filter/geometry.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/geom_filter/Makefile
+END

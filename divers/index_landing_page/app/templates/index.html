@@ -1,0 +1,114 @@
+<html lang="en" class="nivo-lightbox-notouch">
+<head>
+    <style type="text/css">.gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc div{font-size:10px}</style>
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <style type="text/css">
+        @media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}
+    </style>
+    <style type="text/css">.gm-style{font-family:Roboto,Arial,sans-serif;font-size:11px;font-weight:400;text-decoration:none}</style>
+    <meta charset="UTF-8">
+    <title>Yari - Linking the real to the digital world</title>
+    <meta name="description" content="Yari, linking the real world to the digital world">
+    <meta name="keywords" content="link real to digital world, image recognition, ">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">    
+    <link rel="icon" href="/static/images/favicon.ico">
+    <link href="http://fonts.googleapis.com/css?family=Cabin:400,600|Open+Sans:300,600,400" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/animate.min.css">
+    <link rel="stylesheet" href="/static/css/nivo-lightbox.css">
+    <link rel="stylesheet" href="/static/css/default.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/responsive.css">    
+    <link rel="stylesheet" href="/static/css/blue.css">
+    <link rel="stylesheet" href="/static/css/demo.css">    
+    <link rel="stylesheet" type="text/css" href="/static/css/stickytooltip.css" />                    
+
+<!--[if lt IE 9]>
+			<script src="/static/js/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        .standard-button,
+        .navbar-register-button {
+       filter: none;
+        }
+      </style>
+    <![endif]-->
+    <!-- ****************
+      After neccessary customization/modification, Please minify HTML/CSS according to http://browserdiet.com/en/ for better performance
+     **************** -->
+</head>
+
+<body>
+    <div class="preloader" style="display: none;">
+        <div class="status" style="display: none;">
+            &nbsp;
+        </div>
+    </div>
+    <header class="header" data-stellar-background-ratio="0.5" id="home" style="background-position: 50% 0%;">
+        <div class="overlay-layer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="intro-section">                        
+                            <div class="masthead">
+                              <div class="container">
+                                <h1>Yari</h1>
+                              </div>
+                            </div>                          
+                            <h1 class="intro white-text">Linking the real to digital world.</h1>
+                            <h5 class="white-text">We link every physical object (catalogs, flyers, newspapers, ..)<br> to its online web page (purchase page, infos page, ..) <br>using a simple <b><a id="visuals-id" href="#" data-tooltip="sticky1">mobile photo snap</a></b>.</h5>
+                            <div class="row" style="margin-top:-30px;">
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="horizontal-subscribe-form">
+<p class="white-text">Coming soon, get notified when we launch!</p>
+                                        <form class="form-inline mailchimp" method="POST" action="/">
+                                           {{ form.hidden_tag() }}                    
+                                           <div class="form-group {% if form.mail.errors %} has-error {% endif %}">
+                                               <input type="email" id="mail" name="mail" class="form-control input-box placeholder error" placeholder="Enter your Email">
+                                            </div>   
+
+                                            <button type="submit" class="btn btn-primary standard-button">Subscribe</button>                                            
+                                        </form>
+                                        <p style="color:#008ed6;" ><span class="icon-close-alt2"></span>{{ form.mail.errors[0] }}  </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p style="color:white;">© 2014 Copyright. All Rights Reserved by Yarilab.</p>
+        </div>
+    </header>
+
+    <div id="mystickytooltip" class="stickytooltip">
+        <div style="padding:5px">
+            <div id="sticky1" class="atip" style="width:589px">
+                <center>An example of snappable products in a catalog (blue boxes).</center>
+                <img src="/static/images/visuals.png" width="490" height="321" /><br />                            
+            </div>
+        </div>
+    </div>
+    
+    <script src="/static/js/jquery.min.js"></script>
+    <script>
+        /* PRE LOADER */
+        jQuery(window).load(function () {
+            "use strict";
+            jQuery(".status").fadeOut();
+            jQuery(".preloader").delay(1000).fadeOut("slow");
+        })
+    </script>
+    <script src="/static/js/smoothscroll.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.nav.js"></script>
+    <script src="/static/js/wow.min.js"></script>
+    <script src="/static/js/nivo-lightbox.min.js"></script>
+    <script src="/static/js/jquery.stellar.min.js"></script>
+    <script src="/static/js/retina.min.js"></script>
+    <script src="/static/js/jquery.ajaxchimp.min.js"></script>
+    <script type="text/javascript" src="/static/js/demo.js"></script>
+    <script type="text/javascript" src="/static/js/stickytooltip.js"></script>
+</body>
+</html>

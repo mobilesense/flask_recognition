@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab docs content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/timeline.css" rel="stylesheet" type="text/css" />                
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>          
+        <script src="/static/js/app.js"></script>  
+        <script type="text/javascript" src="/static/dashboard/js/stickytooltip.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/dashboard/css/stickytooltip.css" />                
+        <script src="/static/js/jquery.nicescroll.min.js"></script>        
+
+        <!-- components -->
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" />                
+        <link href="/static/dashboard/css/components.css" rel="stylesheet" type="text/css" /> 
+                
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+        {% include "/header.html" %}
+        <div class="container" id="container-top">
+        <br>
+            <div class="row-fluid">
+                <div class="col-md-offset-1" style="display:inline;">
+                    <img src="/static/img/yarilab_app.png" title="" alt="" style="height:400px;" />
+                </div>            
+                <div class="span8" style="display:inline;">
+                    <div class="page-header">
+                        <h1 id="timeline">Demonstration and Use Cases</h1>
+                      	<p>A study on our matching accuracy and robustness. <a href="">Here</a> you can find a presentation video on our features.</p>
+                    </div>
+                    <h2>Live Demo, see https://www.logograb.com/why/ animation: good</h2>
+                    <ul class="timeline">               
+                        <li class="timeline-inverted">
+                          <div class="timeline-badge warning">1</div>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading">
+                              <h4 class="timeline-title">Get Yarilab mobile app</h4>
+                            </div>
+                            <div class="timeline-body">
+                              <p>Start by downloading our Yarilab <a href="">iOS</a> or <a href="">Android</a> app.</p>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="timeline-inverted">
+                          <div class="timeline-badge warning">2</div>
+                          <div class="timeline-panel">
+                            <div class="timeline-heading">
+                              <h4 class="timeline-title">Snap a product</h4>
+                            </div>
+                            <div class="timeline-body">
+                              <p>From <a href="#" data-toggle="modal" data-target="#catalog_modal">this catalog</a> (considered as paper catalog), <a id="visuals-id" href="#" data-tooltip="sticky1">snap</a></b> a product image using our app and you will get redirected to its purshase page.</p>
+                            </div>
+                          </div>
+                        </li>
+                    </ul> 
+                </div>                    
+                <div id="mystickytooltip" class="stickytooltip">
+                    <div style="padding:5px">
+                        <div id="sticky1" class="atip" style="width:689px">
+                            <center>An example of snappable products (blue boxes).</center>
+                            <img src="/static/img/visuals.png" /><br />                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal fade" id="catalog_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+	                        <div class="modal-header">
+		                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		                        <h4 class="modal-title" id="myModalLabel">Demo Catalog</h4>
+	                        </div>
+	                        <div class="modal-body">
+	                            put catalog iframe here
+                            </div>
+                        </div>        
+	                </div>       
+	            </div>  	             
+                <div class="span10">   
+                    <div id="robustness">
+                        <h2>Is it robust ?</h2>
+                      	<p>Yes it is. We extinsively tested our matching engine in different lighting conditions, occultations, image scales/orientations, blurred images, and the results are very accurate. 
+                      	You can test it by yourself by snapping one of these use cases, you will be redirected to the same and exact product:</p>
+                        <div class="row-fluid col-md-offset-1">
+                            <ul class="thumbnails example-sites">
+                                <li class="span3">
+                                  <a class="thumbnail" href="http://soundready.fm/" target="_blank">
+                                    <img src="assets/img/example-sites/soundready.png" alt="SoundReady.fm">
+                                  </a>
+                                  <p class="snap-conditions">Dark lighted snap</p>
+                                  <!-- TODO show it full screen, see uploads -->
+                                </li>
+                                <li class="span3">
+                                  <a class="thumbnail" href="http://kippt.com/" target="_blank">
+                                    <img src="assets/img/example-sites/kippt.png" alt="Kippt">
+                                  </a>
+                                  <p class="snap-conditions">low scaled snap</p>
+                                </li>
+                                <li class="span3">
+                                  <a class="thumbnail" href="http://www.gathercontent.com/" target="_blank">
+                                    <img src="assets/img/example-sites/gathercontent.png" alt="Gather Content">
+                                  </a>
+                                  <p class="snap-conditions">Rotated snap</p>
+                                </li>
+                                <li class="span3">
+                                  <a class="thumbnail" href="http://www.jshint.com/" target="_blank">
+                                    <img src="assets/img/example-sites/jshint.png" alt="JS Hint">
+                                  </a>
+                                  <p class="snap-conditions">Blurred snap</p>
+                                </li>
+                            </ul>
+                        </div>                   	
+                    </div> 
+                </div>
+                <div class="span10">         
+                    <div id="scalability">            
+                        <h2>Is it scalable ?</h2>
+                        <p>Yes it is. We can go up to 10.000 images, and up to 100.000 queries per month for the <a href="/pricing">Premium plan</a>.</p>
+                    </div>
+                </div><!-- ./span10 -->                                                             
+            </div>   <!-- ./row-fluid -->                
+            <a class="scroll-top-wrapper hidden-xs show" href="#container-top"><i class="fa fa-angle-up"></i></a>
+            <hr>             
+        </div><!-- ./container -->
+
+        {% include "/footer.html" %}
+    </body>
+</html>                 

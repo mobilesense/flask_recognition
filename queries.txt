@@ -1,0 +1,1 @@
+#Visual.query.filter_by(user_id=current_user.id).join(Query).filter(and_(Query.visual_id == Visual.id, func.MONTH(Query.quering_date) == now.month)).count()                       

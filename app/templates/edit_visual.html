@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab docs content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>edit visual</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" />        
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" />         
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>          
+        <script src="/static/js/app.js"></script>
+        <script src="/static/js/jquery.nicescroll.min.js"></script>          
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+        {% include "/header.html" %}
+        <div class="container">     
+            <br>
+            <h1>Image Database Management</h1>
+            <h2 class="lead">Query, Update, Analyse database </h2>
+            <div>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="/manage/projects/all">Update DB</a></li>
+                    <li><a href="/query">Query DB</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                </ul>
+            </div>            
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                    <!-- TODO validation mail ? -->
+		            <form role="form" method="POST" action="/manage/visual/edit/{{ visual.id }}">
+                        {{ edit_visual_form.hidden_tag() }}                    
+			            <h2 style="text-align:center;">Edit visual <small>Projects/{{ project_name }}/visuals/{{ visual.name }}</small></h2>
+			            <hr class="colorgraph">
+			            <div class="form-group {% if edit_visual_form.name.errors %} has-error {% endif %}">
+				            <label>Visual Name</label>
+				            <input type="text" name="name" id="name" class="form-control input-lg" placeholder="name" tabindex="3" value="{{ visual.name }}">
+				            <p class="col-sm-5 help-block">
+                            {{ edit_visual_form.name.errors[0] }}
+                            </p>
+			            </div>            
+			            <div class="form-group {% if edit_visual_form.visual_meta.errors %} has-error {% endif %}">
+				            <label>Visual redirection URL</label> 
+				            <input type="url" name="visual_meta" id="visual_meta" class="form-control input-lg" placeholder="Visual redirection URL" tabindex="3" value="{{ visual.visual_meta }}">
+				            <p class="col-sm-5 help-block">
+                            {{ edit_visual_form.visual_meta.errors[0] }}
+                            </p>
+			            </div> 
+			            <hr class="colorgraph">	 
+       				    <div class="col-xs-12 col-md-5 col-md-offset-1"><input type="submit" value="Save" class="btn btn-success btn-block btn-lg" tabindex="7"></div>
+    				    <div class="col-xs-12 col-md-5 col-md-offset-11"><input type="button" value="Cancel" onclick="window.location='/manage/visuals/edit/{{ visual.project_id }}/all';"class="btn  btn-block btn-lg" tabindex="7"></div> 
+			        </form>   
+			    </div>       
+			</div>                        
+            
+        </div> <!-- ./ container -->   
+        {% include "/footer.html" %}
+    </body>
+</html>       

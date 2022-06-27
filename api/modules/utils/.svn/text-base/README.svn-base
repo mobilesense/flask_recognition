@@ -1,0 +1,45 @@
+This folder contains the base functions used in bigimbaz. 
+
+
+Library files
+=============
+
+* vector.{h,c} and matrix.{h,c}
+
+base functions for vector and matrix handling, including I/O 
+in .fvecs and .ivecs file formats. 
+
+* nn.{h,c}
+
+Finding nearest neighbours in descriptor space. The functions are
+mostly exact, but there is also an approximate nearest neighbour
+searching structure. nn_cuda is a GPU version of the functions.
+
+* clustering.{h,c}
+
+K-means clustering.
+
+* hkm.{h,c}
+
+Hierarchical clustering.
+
+* generic_hash_table.{h,c}
+
+Hash table (not so unexpected)
+
+* sorting.{h,c}
+
+sort and find nearest neigbors, medians, ranks
+
+* fast_alloc.{h,c}
+
+create a memory structure to reduce the overhead of calling a malloc
+
+
+Python interface & utilities
+============================
+
+* utils.swg, common.swg
+
+Generates a python interface for the C-functions in the library. 
+The import should be performed on common.swg (not utils.swg). 

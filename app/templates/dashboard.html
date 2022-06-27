@@ -1,0 +1,541 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab docs content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>dashboard</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" />        
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>                           
+        <script src="/static/js/app.js"></script>  
+        <!-- components -->
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" />                
+        <link href="/static/dashboard/css/components.css" rel="stylesheet" type="text/css" />        
+        <!-- Highcharts-->
+        <script src="/static/dashboard/js/highcharts.js"></script>
+        <script src="/static/dashboard/js/exporting.js"></script>
+        <!-- Slimscroll-->
+        <script type="text/javascript" src="/static/dashboard/js/jquery.slimscroll.min.js"></script>
+        <script src="/static/js/jquery.nicescroll.min.js"></script>       
+        <!-- google map -->
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script> 
+        
+        <script src="/static/js/nprogress.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="/static/css/nprogress.css"/>
+
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+        {% include "/header.html" %}               
+        <div class="container" id="container-top">                            
+            <br>                                  
+            <h1>Image Database Management</h1>
+            <h2 class="lead">Query, Update, Analyse database </h2>
+            <div>
+                <ul class="nav nav-tabs">
+                    <li><a href="/manage/projects/all">Update DB</a></li>
+                    <li><a href="/query">Query DB</a></li>
+                    <li class="active"><a href="/dashboard">Dashboard</a></li>
+                </ul>
+            </div> 
+
+            <div class="form-group" style="text-align:center;">
+                <label>Select a project</label>
+                <select name="select-projects" id="select-projects">
+                    {% for project in projects %}
+                        <option value="{{ project.id }}">{{ project.name }}</option>
+                    {% endfor %}  
+                </select>    
+            </div>    
+            <!-- overall stats -->
+            <div class="row number-stats margin-bottom-30">
+                <div class="year-block col-md-1 col-sm-1 col-xs-1" id="years-list">
+                    <!--<p class="year-before"><a href="">2013</a></p>
+                    <p class="year">2014</p>-->
+                </div>                                
+		
+			    <div class="col-md-5 col-sm-5 col-xs-5">
+				    <div class="stat-left">
+    				    <span class="mini-stat-icon tar-left">
+    				        <i class="fa fa-user"></i>
+    				    </span>
+					    <div class="stat-number">
+						    <div class="title" id="unique-users-title">
+						    </div>
+						    <div class="number" id="unique-users-number">
+						    </div>
+						    <div class="title" id="users-insight-link">
+						        <a hef="#" >View in depth <i class="icon icon-circle-arrow-right"></i></a>
+						    </div>
+					    </div>
+				    </div>
+			    </div>
+			    <div class="col-md-6 col-sm-6 col-xs-6">
+				    <div class="stat-right">					    
+						<span class="mini-stat-icon tar-right">
+    				        <i class="fa fa-bar-chart-o "></i>
+    				    </span>
+					    <div class="stat-number">
+						    <div class="title" id="total-queries-title">
+						    </div>
+						    <div class="number" id="total-queries-number">
+						    </div>
+						    <div class="title" id="queries-insight-link">details above</div>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+            <!-- ./overall stats -->            
+            
+            <a class="scroll-top-wrapper hidden-xs show" href="#container-top"><i class="fa fa-angle-up"></i></a>
+            
+            <!-- tab content --> 
+            <hr>            
+            <div id="query-stats">        
+                <div id="year_bars_container" style="width: 50%; height: 350px;float:right;"></div>    
+                <div id="ranked_visuals" style="width: 50%; height: 350px;float:left;"></div>    
+                <div id="month_bars_container" style="width: 100%; height: 250px;float:center;"></div><!-- 100%-->   
+            </div> 
+            <div class="hide" id="users-stats">                                  
+                <div id="new-vs-returning-users" style="width: 50%; height: 350px;float:right;"></div>                
+                
+                <div style="width: 50%; height: 200px;float:left;margin-top: 8em;">                    
+                    <div id="users-devices" class="row">
+                        <div class="col-md-4 col-vlg-3 col-sm-6 content-box pad10A" style="background-color: #f9f9f9;">
+                            <p style="color: #505458; font-size:22px;text-align: center!important;">Android</p>                                
+                            <p style="color: #858689; font-size:16px;text-align: center!important;font-weight: 600;line-height: 22px;">32 Queries</p>
+                            <p class="user-percentage">32%</p>                        
+                        </div>
+                        <div class="col-md-4 col-vlg-3 col-sm-6 content-box pad10A col-md-offset-1" style="background-color: #f9f9f9;">
+                            <p style="color: #505458; font-size:22px;text-align: center!important;">iOS</p>                                                    
+                            <p style="color: #858689; font-size:16px;text-align: center!important;font-weight: 600;line-height: 22px;">16 Queries</p>
+                            <p class="user-percentage">12%</p>                        
+                        </div>                    
+                    </div> <!-- user devices -->                                              
+                </div> <!-- ./left -->                         
+                                                                         
+                <div id="users-location" style="float:center;">                                                    
+                    <header role="heading">
+                      <h2>Users location<small> <p class="loc-share">12%</p> of users shared their location</small></h2>
+		              <hr>
+		            </header>
+                    <div class="inner-spacer" role="content">                                            
+                      <div class="row"> 
+                        <!--Row-->
+                        <div class="col-md-7">
+			                <!-- map here -->   
+                            <style>
+                                img {
+                                    max-width: none;
+                                }
+                            </style> 
+                            <div class="content-box pad10A">           
+                                <div id="map" style="width:540px; height:400px;"></div>                     
+                            </div>    
+                       </div>
+                        <div class="col-md-4 col-md-offset-0" id="table_cities">
+                          <div class="table-responsive">
+                            <table class="table table-striped table-hover margin-0px airtable">
+                              <thead>
+                                <tr>
+                                  <th colspan="2">City</th>
+                                  <th>Queries</th>
+                                  <th>Part</th>
+                                </tr>
+                              </thead>
+                              <tbody id="tbody_cities_rank">
+                                <tr>
+                                  <td><span class="num">1</span></td>
+                                  <td><h5>Grenoble</h5></td>
+                                  <td><p class="city-percentage">12%</p></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div> <!--/Row-->
+                       
+                    </div><!-- ./inner-spacer -->
+                </div><!-- ./user-location -->                
+            </div><!-- ./ users-stats -->
+            
+        </div><!-- end container -->
+
+        <div id="mystickytooltip" class="stickytooltip">
+            <div id="sticky1" class="atip" style="padding:5px">
+            </div> 
+            <div id="sticky2" class="atip" style="padding:5px">
+            </div> 
+            <div id="sticky3" class="atip" style="padding:5px">
+            </div> 
+            <div id="sticky4" class="atip" style="padding:5px">
+            </div> 
+            <div id="sticky5" class="atip" style="padding:5px">
+            </div> 
+            <div id="sticky6" class="atip" style="padding:5px">
+            </div> 
+            <div id="sticky7" class="atip" style="padding:5px">
+            </div> 
+            <div id="sticky8" class="atip" style="padding:5px">
+            </div> 
+            <div id="sticky9" class="atip" style="padding:5px">
+            </div>          
+            <div id="sticky10" class="atip" style="padding:5px">
+            </div>                            
+            <div class="stickystatus"></div>    
+        </div>
+        
+<script>
+    $('#queries-insight-link').click(function (){  
+        $('#users-stats').hide();
+        $('#query-stats').show();        
+        $('#users-insight-link').html('<a hef="#">View in depth <i class="icon icon-circle-arrow-right"></i></a>');             
+        $('#queries-insight-link').html('details above');
+    });
+    
+    function cities_ranking(list){
+        $('#tbody_cities_rank').empty();
+        $.each(list, function(index, city) {
+            var tr = '<tr>\n<td><span class="num">'+(index+1)+'</span></td>\n<td><h5>'+city[0]+'</h5></td>\n<td><h5>'+city[1]+'</h5></td>\n<td><p class="city-percentage">'+city[2]+' %</p></td>\n</tr>';
+            $('#tbody_cities_rank').append(tr);    
+        });        
+    }
+    
+    function google_locations(center, markers) {
+        var myLatlng = new google.maps.LatLng(center[0], center[1]);    
+        var mapOptions = {
+            zoom: 2,
+            center: myLatlng
+        }                    
+        var mapper = new google.maps.Map(document.getElementById('map'), mapOptions);                        
+        var infowindow = new google.maps.InfoWindow();
+        var marker, lati, longi;
+        $.each(markers , function(user_id, user_markers) {
+            $.each(user_markers, function(pos, freq) {
+                pos = pos.substring(1, pos.length-1);
+                lati = parseFloat(pos.split(",")[0])
+                longi = parseFloat(pos.split(",")[1])
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(lati, longi),
+                    map: mapper
+                });         
+                i = 0;                                              
+                google.maps.event.addListener(marker, 'click', (function(marker,i ) {
+                    return function() {
+                        infowindow.setContent("queried "+freq+" times");
+                        infowindow.open(mapper, marker);
+                    }
+                })(marker, i));                                                         
+            });                        
+        });                 
+    }
+    
+    function returning_new_users(returning_users_value){
+        $('#new-vs-returning-users').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Returning vs. New users'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '',
+                colors: ['#2f7ed8', '#5bc0de'], //vert: #0aa699, rouge:#f35958
+                data: [
+                    ['New users', 100-returning_users_value],
+                    ['Returning users', returning_users_value]
+                ]
+            }]
+        });        
+    }
+     
+    function get_series(series, target_year, target_month){
+        //days range   
+        var days = Object.keys(series[target_year]['details'][target_month]['details'])
+        //days of target_month details
+        var month = new Array();
+        $.each(series[target_year]['details'][target_month]['details'] , function(key, value) {
+            month.push(value);
+        });   
+        //months of target_year details
+        var year = new Array();
+        $.each(series[target_year]['details'] , function(key, value) {        
+            year.push(value['overall']);
+        });         
+        return [year, month, days];
+    }
+
+    function chart_month(actual_y, month, days_series, month_series){
+        var chart = new Highcharts.Chart({        
+            chart: {
+                renderTo: 'month_bars_container', 
+                zoomType: 'x'
+            },        
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                enabled: true
+            },
+            title: {
+                text: 'Detailed daily '+month+' '+actual_y.toString()+' queries'
+            },        
+            subtitle: {
+                text: 'click on a month vertical bar to get its details'
+            },
+            xAxis: {
+                categories: days_series
+            // depends on month_series    
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of queries'
+                }
+            },        
+            series: [{
+                name:'# of queries',
+                data: month_series
+            }],               
+        });    
+    }
+    
+    function reload1(series, actual_y, actual_m){
+        var res = get_series(series, actual_y, actual_m);     
+        year_series = res[0]; month_series = res[1]; days_series = res[2];
+        //year series
+        var categ = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        $('#year_bars_container').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Monthly Queried Database'
+            },
+            subtitle: {
+                text: 'Number of queries in '+actual_y.toString()
+            },
+            xAxis: {
+                categories: categ
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of queries'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b> {point.y:.1f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                                },            
+                        series: {
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function() {
+                                        var month_id = categ.indexOf(this.category)+1;
+                                        var res = get_series(series, actual_y, month_id);
+                                        month_series = res[1]; days_series = res[2];
+                                        chart_month(actual_y, this.category, days_series, month_series);
+                                    }
+                                }
+                            }
+                        }
+                    },            
+            series: [{
+                name: 'users queries',
+                data: year_series
+            }]
+        });                    
+        // month series
+        chart_month(actual_y, categ[actual_m-1], days_series, month_series);            
+    }
+    
+    $( "#select-projects" ).change(function() {                    
+        var current_project = $(this).val();                
+        var actual_m = new Date().getMonth() + 1;                
+        NProgress.set(1);
+        $.post("/dashboard/"+current_project, { action: "get_queries" },
+            function(data){
+                NProgress.done();
+                years = Object.keys(data.series);
+                last_year = years[years.length-1];
+                $('#total-queries-title').text(last_year+' TOTAL QUERIES');
+                $('#total-queries-number').text(data.series[last_year]['overall']);
+                $('#unique-users-title').text(last_year+' UNIQUE USERS');
+                $('#unique-users-number').text(data.series[last_year]['unique_users']);                
+                //years 
+                $('#years-list').empty();
+                $.each(years , function(index, year) {        
+                    if (index == years.length-1)                       
+                        $('#years-list').append('<p class="qyears year">'+year+'</p>');
+                    else                           
+                        $('#years-list').append('<p class="qyears year-before">'+year+'</p>');
+                });
+                var actual_y = new Date().getFullYear();
+                reload1(data.series, actual_y, actual_m);
+                // returning vs new visitors
+                returning_new_users(data.series[actual_y]['returning_users']);                
+                // cities ranking
+                cities_ranking(data.series[actual_y]['cities']);                
+                //users location                              
+                $('#users-insight-link').click(function (){
+                    $('#query-stats').hide();        
+                    $('#users-stats').show();         
+                    var center = data.series[actual_y]['center_markers'];
+                    var markers = data.series[actual_y]['users_markers'];                                            
+                    google_locations(center, markers);
+                    // ./ users location
+                    $('#queries-insight-link').html('<a hef="#">View in depth <i class="icon icon-circle-arrow-right"></i></a>');     
+                    $('#users-insight-link').html('details above');
+                });                                                                                               
+                $('p.qyears').click(function(){
+                    var actual_y = $(this).text();
+                    $('#total-queries-title').text(actual_y+' TOTAL QUERIES');
+                    $('#total-queries-number').text(data.series[actual_y]['overall']);
+                    $('#unique-users-title').text(actual_y+' UNIQUE USERS');
+                    $('#unique-users-number').text(data.series[actual_y]['unique_users']);                       
+                    $('p.year').attr('class', 'year-before');
+                    $(this).attr('class', 'year');                    
+                    reload1(data.series, actual_y, actual_m);
+                    returning_new_users(data.series[actual_y]['returning_users']);                
+                    cities_ranking(data.series[actual_y]['cities']);
+                    var center = data.series[actual_y]['center_markers'];
+                    var markers = data.series[actual_y]['users_markers'];                                            
+                    google_locations(center, markers);                    
+                });
+            } // ./end success callback        
+        ); // ./end post request           
+
+        /* visuals frequency */                
+        Array.prototype.last = function() {return this[this.length-1];}                
+        $.post("/dashboard/"+current_project, { action: "rank_visuals"},
+            function(data){              
+                var script = document.createElement('script');
+                script.id = 'the_script';
+                //the script's source here
+                script.src = '/static/dashboard/js/stickytooltip.js';
+                script.type ='text/javascript';
+                document.getElementsByTagName('head')[0].appendChild(script);
+
+                var urls = $.map(data.series, function(x) { return x[0];  });
+                var nmatches = $.map(data.series, function(x) { return x[1];  });                                
+                var ids = new Array();
+                for(var i=0;i<urls.length;i++){ 
+                    ids[i]=i+1; 
+                    $('#sticky'+(i+1)).html('<img src="'+urls[i]+'"></img>');
+                }       
+                $('#ranked_visuals').highcharts({
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: 'Visuals ranking'
+                    },
+                    subtitle: {
+                        text: 'Most 10 reccurent matched visuals'
+                    },
+                    xAxis: [{     
+                        useHTML: true,           
+                        categories: ids,                                   
+                        title: {
+                            text: null
+                        },
+                    labels: {
+                        x: -30,
+                        y:-5,
+                        useHTML: true,
+                        formatter: function () {
+                            var url = urls[this.value-1];
+                            return '<a href="#" data-tooltip="sticky'+this.value+'"><img src="'+url+'" width="30" height="30"></img></a>&nbsp;';
+                        }
+                    }
+                    }, {
+                        linkedTo: 0,
+                        categories: ids                
+                    }],
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'matches',
+                            align: 'high'
+                        },
+                        labels: {                        
+                            overflow: 'justify'
+                        }
+                    },
+                    tooltip: {
+                        valueSuffix: ' times'
+                    },
+                    plotOptions: {
+                        bar: {
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'top',
+                        x: -40,
+                        y: 100,
+                        floating: true,
+                        borderWidth: 1,
+                        backgroundColor: '#FFFFFF',
+                        shadow: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: [{
+                        name: 'queried',
+                        data: nmatches
+                    }]
+                });
+        });
+    });     
+    $( "#select-projects" ).change();            
+</script>    
+  
+<!-- toolip stick -->
+<script type="text/javascript" src="/static/dashboard/js/stickytooltip.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/dashboard/css/stickytooltip.css" />
+<!-- End toolip stick -->
+        <br><br><br><br><br><br><br><br>
+        {% include "/footer.html" %}
+    </body>
+</html>  

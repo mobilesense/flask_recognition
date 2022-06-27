@@ -1,0 +1,10 @@
+LIB =    libimage.a
+FILES   =  ImageContent
+
+all: $(LIB)
+
+include ../makefile.inc
+
+ImageContent.o: ImageContent.cpp imageContent.h 
+
+ImageContent.o: EXTRACFLAGS=$(MAGICKCPPFLAGS)

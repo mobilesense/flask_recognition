@@ -1,0 +1,26 @@
+
+
+MAGICKCONFIG=Magick++-config
+MAGICKCPPFLAGS=-DIMAGEMAGICK `$(MAGICKCONFIG) --cppflags`
+MAGICKLDFLAGS= -L/usr/X11R6/lib `$(MAGICKCONFIG) --ldflags --libs` -ldl 
+
+FILES   =  compute_descriptors
+
+LIBDIR=-L..
+
+LIBRARY += $(LIBDIR)/ImageContent -limage
+LIBRARY += $(LIBDIR)/descriptor -ldescriptor
+LIBRARY += $(LIBDIR)/gauss_iir -lgauss_iir
+LIBRARY += $(LIBDIR)/util -lutil
+LIBRARY += $(LIBDIR)/matrix -lmatrix
+LIBRARY += $(LIBDIR)/util -lutil
+LIBRARY +=  -lpng -lz -lm $(MAGICKLDFLAGS)
+
+compute_descriptors: compute_descriptors.o ../ImageContent/libimage.a ../descriptor/libdescriptor.a ../gauss_iir/libgauss_iir.a ../util/libutil.a ../matrix/libmatrix.a ../util/libutil.a
+	g++ -o $@ $< $(LIBRARY) `Magick++-config --ldflags --libs`
+
+
+include ../makefile.inc
+
+compute_descriptors.o: compute_descriptors.cpp ../descriptor/feature.h \
+  ../descriptor/../ImageContent/imageContent.h ../util/util.h

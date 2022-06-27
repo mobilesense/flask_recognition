@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab docs content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>change password</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" />        
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" />         
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>          
+        <script src="/static/js/app.js"></script>  
+        <script src="/static/js/jquery.nicescroll.min.js"></script>        
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+        {% include "/header.html" %}
+        
+        <br><br>
+        <div class="container">
+            <div class="row" >
+                <div class="col-lg-6 col-md-offset-3">
+                    <form class="form-horizontal well" action="/user/password/change" method="POST">
+                        {{ change_pass_form.hidden_tag() }}    
+                        <legend>Change Password</legend>
+                        <fieldset>                
+                            <div class="control-group {% if change_pass_form.old_password.errors %} has-error {% endif %}">
+                              <div class="control-label">
+                                <label>Old Password</label>
+                              </div>
+                              <div class="controls">
+                                <input type="password" name="old_password" class="input-large">
+                                <p class="col-sm-5 help-block">
+                                    {{ change_pass_form.old_password.errors[0] }}
+                                </p>                     
+                              </div>
+                            </div>
+                            <div class="control-group {% if change_pass_form.new_password.errors %} has-error {% endif %}">
+                              <div class="control-label">
+                                <label>New Password</label>
+                              </div>
+                              <div class="controls">
+                                <input type="password" name="new_password" class="input-large">
+                                <p class="col-sm-5 help-block">
+                                    {{ change_pass_form.new_password.errors[0] }}
+                                </p>                     
+                              </div>
+                            </div>
+                            <div class="control-group {% if change_pass_form.new_password_confirm.errors %} has-error {% endif %}">
+                              <div class="control-label">
+                                <label>New Password Again</label>
+                              </div>
+                              <div class="controls">
+                                <input type="password" name="new_password_confirm" class="input-large">
+                                <p class="col-sm-5 help-block">
+                                    {{ change_pass_form.new_password_confirm.errors[0] }}
+                                </p>                    
+                              </div>
+                            </div>                           
+                            <div class="control-group col-md-offset-1">
+                              <div class="controls">
+                              <button type="submit" id="submit" class="btn btn-primary">Save</button>
+                              </div>
+                            </div>
+                          </fieldset>
+                    </form>
+                    <div class="col-lg-4 col-md-offset-0">
+                        <a href="/user/edit">Edit Info</a></div>
+                    </div>    
+                </div>        
+            </div>
+        </div>
+        {% include "/footer.html" %}
+    </body>
+</html>         

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab docs content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>add visual</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" />
+        <!--<link href="/static/css/singleupload.css" rel="stylesheet" type="text/css" />-->
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>          
+        <script src="/static/js/app.js"></script>  
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+        {% include "/header.html" %}
+        <div class="container">     
+            <br>
+            <h1>Image Database Management</h1>
+            <h2 class="lead">Query, Update, Annotate database </h2>
+            <div>
+                <ul class="nav nav-tabs">
+                    <li><a href="/query">Query DB</a></li>
+                    <li class="active"><a href="/manage/projects/all">Update DB</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                </ul>
+            </div>            
+
+            <div class="row" style="margin-top:-15px;">
+                <!--<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">-->
+                <div class="col-xs-12 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+                    <!-- TODO validation mail ? -->
+		            <form role="form" method="POST" action="/manage/{{ project_id }}/visual/add" enctype="multipart/form-data">
+                        {{ add_visual_form.hidden_tag() }}                    
+			            <h2 style="text-align:center;">Add visual <small>Projects/{{ project_name }}/visuals/</small></h2>
+			            <hr class="colorgraph">
+			            <div class="col-lg-5" style="margin-left:50px;">
+			                <div class="form-group {% if add_visual_form.name.errors %} has-error {% endif %}">
+				                <label>Visual Name</label>
+				                <input type="text" name="name" id="name" class="form-control input-lg" placeholder="Visual Name" tabindex="3">
+				                <p class="col-sm-5 help-block">
+                                {{ add_visual_form.name.errors[0] }}
+                                </p>
+			                </div>          
+			                <div style="clear:both;" class="form-group {% if add_visual_form.visual_meta.errors %} has-error {% endif %}">
+				                <label>Visual redirection URL</label> 
+				                <input type="url" name="visual_meta" id="visual_meta" class="form-control input-lg" placeholder="Visual redirection URL" tabindex="3" >
+				                <p class="col-sm-5 help-block">
+                                {{ add_visual_form.visual_meta.errors[0] }}
+                                </p>
+			                </div> 
+			            </div>    
+			            <!-- draggable area -->
+                        <div style="margin-top:-25px;" class="col-lg-5 form-group {% if add_visual_form.name.errors %} has-error {% endif %}">                                                       
+                            <div class="col-xs-6">
+                                <div id="single-holder" class="dropzone" data-width="960" data-height="540" data-url="canvas.php" style="width: 250px; height: 200px;">
+                                    <input type="file" name="thumb" style="position: absolute; display: block;">
+                                    <img id="dropped-img" src=""></img>
+                                    <div class="dropzone-tools" style="display: block;">
+                                        <div class="btn btn-danger btn-cancel" style="display: inline-block;"><i class="icon icon-trash icon-white"></i></div>
+                                    </div>    
+                                </div>
+                                <p id="single-upload" class="hidden"><label>Drag & drop not supported, but you can still upload via this input field:<br>
+                                    <input type="file"></label>
+                                </p>
+                                
+                            </div>	                                                      
+                            <p class="col-sm-5 help-block">
+                            {{ upload_visual_error }}
+                            </p>                                                        
+                        </div>                 
+			            <!-- ./ draggable area -->                               
+			            <hr class="colorgraph">	 
+       				    <div class="col-md-3"><input type="submit" value="Save Visual" class="btn btn-primary btn-block" tabindex="7"></div>
+    				    <div class="col-md-3"><input type="button" value="Cancel" onclick="window.location='/manage/visuals/edit/{{ project_id }}/all';"class="btn btn-block" tabindex="7"></div> 
+			        </form>   
+			    </div>       
+			</div>           
+			<br>
+			<div class="col-md-4">
+			    - OR -
+			    <input type="submit" value="Add multiple visuals" class="btn btn-primary btn-block" tabindex="7">
+			</div>                         
+        </div> <!-- ./ container -->   
+        
+        <script src="/static/js/singleupload.js"></script>                  
+                
+        {% include "/footer.html" %}
+    </body>
+</html>       

@@ -1,0 +1,64 @@
+.SUFFIXES: .cpp .o .py .c .h
+
+include ../compile/makefile.inc
+
+
+#####################################
+
+all:  _geom_filter.so test_filter_shortlist 
+
+
+#####################################
+# generic rules 
+
+
+.c.o:
+	gcc $(CFLAGS) $(EXTRACOPTS) -o $@ -c $<
+
+
+#####################################
+#  objects & exectuables
+
+COBJS=geometry.o filter_shortlist.o ../utils/fast_alloc.o ../siftgeo/siftgeo.o ../utils/generic_hash_table.o ../siftgeo/siftgeo_and_nn.o
+
+CLDOPTS= $(LAPACKLDFLAGS) $(THREADLDFLAGS)
+
+test_filter_shortlist: test_filter_shortlist.o  $(COBJS)
+	gcc $(LDFLAGS) -o $@ $^ $(CLDOPTS) $(YAELLDFLAGS)
+
+filter_shortlist.o test_filter_shortlist.o geometry.o:  EXTRACOPTS=-I.. 
+
+
+#####################################
+#  Wrapper 
+
+geom_filter_wrap.c: geom_filter.swg filter_shortlist.h ../yael/common.swg 
+	$(SWIG) -o $@ -I.. $(EXTRASWIGOPTS) geom_filter.swg
+
+# side effect: generates geom_filter.py
+
+_geom_filter.so: geom_filter_wrap.o $(COBJS)
+	gcc -o $@  $(WRAPLDFLAGS) $^  $(CPPLDOPTS) $(CLDOPTS) $(YAELLDFLAGS)
+
+indent: filter_shortlist.h filter_shortlist.c
+	$(INDENT) $^
+
+geom_filter_wrap.o: EXTRACOPTS=$(PYTHONCFLAGS) -I.. 
+
+
+#######################################
+# Dependencies 
+
+filter_shortlist.o: filter_shortlist.c ../yael/vector.h ../yael/nn.h \
+  ../utils/generic_hash_table.h ../utils/fast_alloc.h \
+  ../siftgeo/siftgeo_and_nn.h ../siftgeo/siftgeo.h filter_shortlist.h \
+  ../siftgeo/siftgeo.h geometry.h
+geometry.o: geometry.c geometry.h ../siftgeo/siftgeo.h filter_shortlist.h
+test_filter_shortlist.o: test_filter_shortlist.c filter_shortlist.h \
+  ../siftgeo/siftgeo.h geometry.h
+
+
+clean: 
+	rm -f  \
+              geom_filter_wrap.c geom_filter.py  \
+              _geom_filter.so filter_shortlist.o *.pyc *.o 

@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo
+END
+siftgeo.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/siftgeo.c
+END
+siftgeo.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/siftgeo.h
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/README
+END
+siftgeo_and_nn.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/siftgeo_and_nn.c
+END
+siftgeo_agg.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/siftgeo_agg.c
+END
+siftgeo.swg
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/siftgeo.swg
+END
+siftgeo_disp.c
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/siftgeo_disp.c
+END
+cluster.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/cluster.c
+END
+siftgeo_and_nn.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/siftgeo_and_nn.h
+END
+siftgeo_binarize.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/siftgeo_binarize.c
+END
+siftgeo_agg.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/siftgeo_agg.h
+END
+cluster_mpi.c
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/cluster_mpi.c
+END
+siftgeo_binarize.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/siftgeo_binarize.h
+END
+ann_vw.c
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/ann_vw.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/bigimbaz/!svn/ver/1380/tags/bigimbaz2-2.4/siftgeo/Makefile
+END

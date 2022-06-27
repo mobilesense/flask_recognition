@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab docs content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>manage</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" />        
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>                           
+        <script src="/static/js/app.js"></script>  
+        <script src="/static/js/jquery.nicescroll.min.js"></script>        
+
+        <!-- components -->
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" />                
+        <link href="/static/dashboard/css/components.css" rel="stylesheet" type="text/css" />        
+                
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true" style="overflow-y: scroll;">
+        {% include "/header.html" %}
+        <div class="container" id="container-top">
+            <br>
+            <h1>Image Database Management</h1>
+            <h2 class="lead">Query, Update, Analyse database </h2>
+            <div>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="/manage/projects/all">Update DB</a></li>
+                    <li><a href="/query">Query DB</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                </ul>
+            </div>    
+            <div class="row number-stats margin-bottom-30 hide" id="box-usage">  
+                <div style="text-align:center;">
+                    <a href="/manage/projects/all"><i class="icon icon-refresh"></i></a><br>
+                    <a href="/user/usage">More details</a>
+                </div>
+			    <div class="col-md-5 col-sm-5 col-xs-5 col-md-offset-1">
+				    <div class="stat-left">
+    				    <span class="mini-stat-icon tar-left">
+    				        <i class="fa fa-picture-o"></i>
+    				    </span>
+					    <div class="stat-number">
+						    <div class="title" id="unique-users-title">
+						    </div>
+						    <div class="number" id="unique-users-number">
+						    </div>
+						    <div class="title" id="users-insight-link">
+						        Total Visuals<br><p class="api-usage-numbers">{{ api_usage['visuals']['now'] }}/{{ api_usage['visuals']['limit'] }}</p>						               
+						    </div>
+					    </div>
+				    </div>
+			    </div>
+			    <div class="col-md-6 col-sm-6 col-xs-6">
+				    <div class="stat-right">					    
+						<span class="mini-stat-icon tar-right">
+    				        <i class="fa fa-chart-line "></i>
+    				    </span>
+					    <div class="stat-number">
+						    <div class="title" id="total-queries-title">
+						    </div>
+						    <div class="number" id="total-queries-number">
+						    </div>
+						    <div class="title" id="queries-insight-link">
+    						    {{ api_usage['current_month'] }} Queries<br><p class="api-usage-numbers">{{ api_usage['queries']['now'] }}/{{ api_usage['queries']['limit'] }}</p>
+                                {% if api_usage['queries']['now'] > api_usage['queries']['limit'] %}
+						            <p><strong class="label label-danger">+{{ api_usage['queries']['now'] - api_usage['queries']['limit'] }}</strong></p>
+						        {% elif api_usage['queries']['now'] == api_usage['queries']['limit'] %} 
+						            <p><strong class="label label-danger">limit reached</strong></p>
+						        {% endif %}      						    
+						    </div>
+					    </div>
+				    </div>
+			    </div>			    
+		    </div>
+		    <div id="toggle-usage" >
+		        <icon class="icon icon-eye-open "></icon>Usage Info<br>
+		        <strong class="label label-primary"><i id="toggle-down-up" class="fa fa-chevron-down"></i></strong>
+		    </div>
+            <hr>
+            
+            <script>
+                $('#toggle-usage').click(function(){
+                    $("#box-usage").slideToggle('slow', function() {                        
+                        if ($('#toggle-down-up').attr('class')=='fa fa-chevron-up'){
+                            $('#toggle-down-up').removeClass('fa fa-chevron-up');
+                            $('#toggle-down-up').addClass('fa fa-chevron-down');
+                        }
+                        else {
+                            $('#toggle-down-up').removeClass('fa fa-chevron-down');
+                            $('#toggle-down-up').addClass('fa fa-chevron-up');                        
+                        }
+                        //$('#toggle-down-up').toggleClass('fa fa-chevron-up', $(this).is(':visible'));
+                    });                    
+                    //$("#toggle-down-up").toggleClass('fa fa-chevron-up', 'fa fa-chevron-down');  
+                });
+            </script>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <h3 id="projects_title_h3" class="panel-title">Projects</h3>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6" style="right:0; padding-left: 300px;">    
+                    <div class="search-div">
+                        <form style="display: inline;" action="{{ url_for('project_search') }}" method="post" name="project_search" >
+                            {{ project_search_form.hidden_tag() }}                      
+                            <input type="text" name="search" id="search" class="form-control input-lg" placeholder="Search for a project" size="20">                                                        
+                            <a type="submit" class="btn btn-default" rel="tooltip" data-original-title="search a project"><i class="icon-large icon-search"></i></a>                                                        
+                        </form>    
+                    </div>    
+                    <div id="add_project_btn">
+                        <a href="/manage/project/add" class="btn btn-default" rel="tooltip" data-original-title="add project"><i class="icon-large icon-plus"></i></a>                   
+                    </div>
+                </div>    
+            </div>    
+            <div class="table-responsive">                
+                <table class="table table-bordered">                
+                    <thead>  
+                        <tr>
+                            <th>#</th>
+                            <th>title</th>
+                            <th style="width:20%;">description</th>
+                            <th>creation date (UTC)</th>
+                            <th>number of visuals</th>
+                            <th>number of queries</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>                    
+                    <tbody>                  
+                        {% for key,value in projects.iteritems() %}
+                        <tr>                      
+                            <td>{{ key }}</td>
+                            <td>{{ value.project.name }}</td>
+                            <td>{{ value.project.description }}</td>
+                            <td>{{ value.project.creation_date }}</td> <!-- TODO convert date to user date -->
+                            <td><span class="badge">{{ value.nb_visuals }}</span></td>
+                            <td><span class="badge">{{ value.nb_queries }}</span></td>
+                                                                        
+                            <td>
+                                <a href="/manage/project/edit/{{ value.project.id }}" class="btn btn-default btn-edit" rel="tooltip" data-original-title="Edit project information"><i class="icon-large icon-edit"></i></a> 
+                                <a href="/manage/visuals/edit/{{ value.project.id }}/all" class="btn btn-default btn-edit" rel="tooltip" data-original-title="edit visuals"><i class="icon-large icon-list"></i></a> 
+                                <a data-id="{{ value.project.id }}" class="delete_project_button btn btn-default btn-edit" data-toggle="modal" rel="tooltip" data-original-title="delete project" ><i class="icon-large icon-trash"></i></a>
+                            </td>       
+                        </tr> 
+                        {% endfor %}               
+                    </tbody>  
+                </table>
+            </div>                    
+
+            <!-- delete confirm modal -->
+            <div class="modal fade" id="delete_project_confirm_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	            <div class="modal-dialog modal-lg">
+		            <div class="modal-content">
+			            <div class="modal-header">
+				            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				            <h4 class="modal-title" id="myModalLabel">You are about to delete a project</h4>
+			            </div>
+			            <div class="modal-body">				            
+				            <p>Deleting a project will delete also its <b>visuals</b> and <b>queries</b> information.</p>
+				            <p>Are you sure to delete ?</p>
+			            </div>
+			            <div class="modal-footer">
+				            <a href="" type="button" class="btn btn-primary" id="delete_project_confirm_button">Yes. Delete</a>
+				            <button type="button" class="btn btn-default" data-dismiss="modal" id="delete_project_cancel_button">Cancel</button>
+			            </div>
+		            </div><!-- /.modal-content -->
+	            </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->  
+            
+            <a class="scroll-top-wrapper hidden-xs show" href="#container-top"><i class="fa fa-angle-up"></i></a>
+            
+        </div>  <!-- /.container -->
+
+             
+        <script type="text/javascript">
+            instantSearchQueries = new Array();
+		    function stopInstantSearchQueries(){
+			    for(i=0;i<instantSearchQueries.length;i++) {
+				    instantSearchQueries[i].abort();
+			    }
+			    instantSearchQueries = new Array();
+		    }        
+            $(document).ready(function(){
+                // tooltip
+                $("[rel='tooltip']").tooltip(); 
+                // confirm_delete
+                $(".delete_project_button").click(function () {
+                    $('#delete_project_confirm_button').attr('href', "/manage/project/delete/"+$(this).data('id'));
+                    $('#delete_project_confirm_modal').modal('show');
+                });
+                //auto search 
+                /*$("#search").keyup(function(){                    
+                    if ($(this).val().length == 0)
+                        query = "all";
+                    else
+                        query = $(this).val();
+			        stopInstantSearchQueries();
+			        instantSearchQuery = $.ajax({
+				        url: "/manage/projects/"+query,
+				        dataType: 'html',
+				        type: 'GET',
+				        success: function(data){
+    				        $('html').html(data);
+                            // data.redirect contains the string URL to redirect to
+                            //window.location.href = data.redirect;				            
+				        }
+				    })	                
+				    instantSearchQueries.push(instantSearchQuery);
+				});	// ./keyup */
+            });// ./documentready
+        </script>
+        {% include "/footer.html" %}
+    </body>
+</html>              

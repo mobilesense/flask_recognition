@@ -1,0 +1,157 @@
+               
+<!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]--> 
+                 
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/">Yari</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-left"> 
+                            <li {{ active['demo'] }}><a href="/demo">Demo</a></li>
+                            <li {{ active['offer'] }}><a href="/offer">Service</a></li>                            
+                            {% if g.user.is_authenticated() %}
+                                <li {{ active['manage'] }}><a href="/manage/projects/all">Manage Database</a></li>
+                            {% endif %}
+                            <li {{ active['pricing'] }}><a href="/pricing">Pricing</a></li>                            
+                            <li {{ active['about'] }}><a href="/about">About</a></li>
+                        </ul>    
+                        <ul class="nav pull-right">
+                            {% if not g.user.is_authenticated() %}
+                                <li>
+                                    <a href="#login_modal" data-toggle="modal" id="login_id">Login</a>            
+                                </li>
+                            {% else %}                            
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ current_user.username }}<b class='caret'></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/user/edit" class="dropdown-toggle"><i class="icon-cog"></i> Account settings</a></li>
+                                        <li><a href="/user/usage" class="dropdown-toggle"><i class="fa fa-bar-chart-o"></i>  Usage details</a></li>
+                                        <li><a href="/logout" class="dropdown-toggle"><i class="icon-off"></i> Log Out</a></li>                                
+                                    </ul>
+                                </li>                                                              
+                                <li class="dropdown" style="margin-left:-10px;">
+                                    {% if notifications|length > 0 %}
+                                        {% if (notifications|first).fresh %}
+                                            <a href="#" id="notif_button_danger" class="dropdown-toggle" data-toggle="dropdown"><strong class="label label-danger">1</strong></a>     
+                                        {% else %}    
+                                            <a href="#" id="notif_button_danger" class="a-notif dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i></a>
+                                        {% endif %}        
+                                    {% endif %}
+                                    <ul class="dropdown-menu" id="ul_notif">                                    
+                                        <li class="popover-title">Notifications</li>
+                                        <ul id="ul_notif_scroller">
+                                            {% for notification in notifications %}
+                                                {% if notification.fresh == 0 %}
+                                                    <li class="li-notif">
+                                                        <a href="javascript:void(0)" ></a>
+                                                {% else %}
+                                                    <li class="li-notif" style="background:#f3f3f3;">
+                                                        <a href="javascript:void(0)" ></a>
+                                                {% endif %}
+                                                {% if notification.notif_type == 'danger' %}
+                                                    <span class="bg-danger icon-notification glyph-icon icon-bullhorn"></span>
+                                                {% else %}    
+                                                    <span class="bg-success icon-notification glyph-icon icon-bullhorn"></span>
+                                                {% endif %}   
+                                                <span>{{ notification.post }}</span><br>
+                                                <div class="notification-time">{{ notification.creation_date }} <i class="icon icon-time"></i></div>
+                                                </li>
+                                            {% endfor %}  
+                                                                          
+                                            <li class="view-all-notif" id="notif_li_all">
+                                                <a href="#" id="notif_button_all" class="btn btn-success text-center" style="color:white;">View all notifications</a>
+                                            </li>
+                                        </ul>
+                                    </ul>    
+                                </li>                       
+                            {% endif %}
+                        </ul>    
+                    </div>                     
+                </div>       
+            </div>
+        </div>   
+        <script>
+            $(document).ready(function() {    
+                    
+                $("#notif_button_danger").click(function(){
+                    $("ul#ul_notif_scroller").niceScroll({cursorcolor:"#000"}); //ul#ul_notif.dropdown-menu
+                    var container = $(this);
+                    $.post("/notifications/defresh", {},
+                    function(data){                                    
+                        container.empty();
+                        container.addClass('a-notif');
+                        container.append('<i class="fa fa-bell"></i>');
+                    });
+                });
+                
+                $("li.li-notif").click(function(e){
+                    e.stopPropagation();
+                    $(this).css('background', '#fff');
+                });
+                
+                $("#notif_button_all").click(function(e){
+                    e.stopPropagation();
+                    $('li#notif_li_all.view-all-notif').empty();         
+                    $('li#notif_li_all.view-all-notif').html('<img src="/static/img/loading.gif"></img>');         
+                    $.post("/notifications/all", {},
+                    function(data){                               
+                        $.each(data.notifications , function(index, notif) {        
+                            var li = '<li class="li-notif"><a href="#" ></a>';
+                            if (notif.notif_type == 'danger')
+                                li += '<span class="bg-danger icon-notification glyph-icon icon-bullhorn"></span>';
+                            else
+                                li += '<span class="bg-danger icon-notification glyph-icon icon-bullhorn"></span>';
+                            li += '<span>'+notif.post+'</span><br><div class="notification-time">'+notif.creation_date+'<i class="icon icon-time"></i></div>';
+                            $("ul#ul_notif_scroller").append(li);                                                  
+                        });                        
+                        $('li#notif_li_all.view-all-notif').remove();         
+                    });
+                });
+            });          
+        </script>
+            
+            
+            
+            
+            
+            
+                                                                                                                       
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                

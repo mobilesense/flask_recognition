@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab docs content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>update</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" /> 
+        <link href="/static/css/steps.css" rel="stylesheet" type="text/css" />               
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" />         
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>          
+        <script src="/static/js/app.js"></script>  
+        <script type="text/javascript" src="/static/dashboard/js/stickytooltip.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/dashboard/css/stickytooltip.css" />        
+        <script src="/static/js/jquery.nicescroll.min.js"></script>        
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+        {% include "/header.html" %}
+        <div class="container" style="z-index:100;margin-top:5%;margin-bottom:20%; ">
+            <div class="marketing" style="color:black;">        
+                <!-- step 0 circle -->                
+                <div class="row bs-wizard" style="border-bottom:0;">
+                    <div class="col-xs-11 bs-wizard-step complete">
+                        <div class="text-center bs-wizard-stepnum">Step 0</div>
+                        <a href="#" class="bs-wizard-dot"></a>
+                    </div>    
+                </div>
+                <h1>Login to start exploring Yari.</h1>
+                <p class="marketing-byline" style="color:black;">Adding visuals, query visuals, statistics on usage,..</p>    
+            </div>
+               
+            <div class="row bs-wizard" style="border-bottom:0;">                
+                <div class="col-xs-4 bs-wizard-step complete"><!-- complete -->
+                  <div class="text-center bs-wizard-stepnum">Step 1</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center"><b>Create a project and add <a id="visuals-id" href="#" data-tooltip="sticky1">visuals</a></b> <br>A project is a collection of visuals. A visual is an image with metadata, for example a redirection URL.</div>
+                </div>
+
+                <div id="mystickytooltip" class="stickytooltip">
+                    <div style="padding:5px">
+                        <div id="sticky1" class="atip" style="width:689px">
+                            <center>A visual (box in blue) is an image of a product that users can snap.</center>
+                            <img src="/static/img/visuals.png" /><br />                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
+                  <div class="text-center bs-wizard-stepnum">Step 2</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center"><b>Get the app or integration codes</b><br>We offer you an iOS/Android white-label app or integration codes if you already have one. Our app give you the possibility to snap a real-world catalog product image and get redirected to purshase or info web page.</div>
+                </div>
+                
+                <div class="col-xs-5 bs-wizard-step active"><!-- active -->
+                  <div class="text-center bs-wizard-stepnum">Step 3</div>
+                  <div class="progress"><div class="progress-bar"></div></div>
+                  <a href="#" class="bs-wizard-dot"></a>
+                  <div class="bs-wizard-info text-center"><b>Analyse your clients queries</b><br>Start using the app and watch statistics on usage. We bring to you a dashboard to analyse the queries your visuals receive. We offer you a daily/monthly and yearly analysis of the number of queries, the most requested visuals and a performance comparaison between projects</div>
+                </div>
+            </div>
+        </div>                    
+        {% include "/footer.html" %}
+    </body>
+</html>                      

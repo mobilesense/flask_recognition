@@ -1,0 +1,21 @@
+
+
+
+What is it?
+===========
+
+It is an implementation of a "geometric inverted file", it uses
+geometry and a binary signature while searching in the inverted file.
+
+Files
+=====
+
+The main code is in ivfgeo{c,h}. It depends on ../siftgeo/siftgeo.{c,h}. 
+
+ivfgeo_create.c ivfgeo_display.c ivfgeo_query.c are command-line
+interfaces to ivfgeo
+
+ivfgeo.swg generates a Python interface to ivfgeo, which is
+demonstrated in ivfgeo_query.py and ivfgeo_create.py
+
+

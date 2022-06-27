@@ -1,0 +1,29 @@
+# -*- makefile -*- 
+
+# CFLAGS = -g -O3 -c -Wall -fPIC  -Wno-deprecated $$( Magick++-config --cflags )
+
+CFLAGS =  -g -c -Wall -fPIC  -Wno-deprecated  $$( Magick++-config --cflags )
+
+
+CC = g++
+
+.SUFFIXES = .c .cc .cpp 
+
+#C_FILES = $(FILES:=.c)
+CPP_FILES = $(FILES:=.cpp)
+O_FILES = $(FILES:%=%.o)
+SHAREDLIB = $(LIB:=.so)
+
+%.o: %.cc   
+	$(CC) $(CFLAGS) $< -o $@
+
+%.o: %.cpp   
+	$(CC) $(CFLAGS) $< -o $@ $(INCLUDES)
+
+$(LIB):  $(O_FILES)
+	 ar rv $@ $?
+	 ranlib $@
+
+targets: $(LIB) 
+
+

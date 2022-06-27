@@ -1,0 +1,15 @@
+
+ALLDIRS=ImageContent gauss_iir descriptor matrix util compute_descriptors
+
+all: $(addprefix compiledir.,$(ALLDIRS)) 
+
+
+
+compiledir.%: 
+	cd $(subst compiledir.,,$@); make
+
+
+
+clean:
+	rm */*.a */*.o
+

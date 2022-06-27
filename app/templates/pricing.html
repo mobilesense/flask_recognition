@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab docs content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>pricing</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link rel="stylesheet" href="/static/css/pricing.css" type="text/css" media="screen">
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" />     
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" />            
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>          
+        <script src="/static/js/app.js"></script>  
+        <script src="/static/js/jquery.nicescroll.min.js"></script>        
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+        {% include "/header.html" %}
+
+        <!-- API pricing -->
+        <div class="container">					    
+            <br>
+            <h1>Simple &amp; Straightforward Pricing</h1>
+            <h2 class="lead">Hosted based sercice. Pay as you go.</h2>
+            <br>
+	        <div class="plan-container" style="margin-left:-700px;">
+            	<div class="api-plan" style="width: 15%; min-height: 528px; ">	
+	                <h1>
+						                Freemium			</h1>
+			        <h2>$0</h2>
+		            <em>additional fees <br>may apply</em>	
+                    <div class="object">
+			           <p><strong>Use of Yarilab mobile app (iOS/Android)</strong></p>
+			           <h2>$0</h2>			<br>
+	            	</div>	   		            
+                    <div class="object">
+                       <p><strong>One-time setup</strong></p>
+                       <h2>$0</h2>			
+                    </div>                                 			    
+                    <div class="object">
+                       <p><strong># of projects</strong></p>
+                       <h2>1</h2>			
+                    </div>                     
+			        <div class="object">
+			            <p><strong>IMAGES UPLOAD LIMIT</strong></p>
+			            <h2>20.</h2>
+	            	</div>
+			        <div class="object">
+			            <p><strong>QUERIES LIMIT</strong></p>
+			            <h2>100				 / mo.</h2>
+			            <p><em><span><br></span></em></p>
+		            </div>
+			        <div class="feature" style="margin-bottom:-16px;">
+			            <h2><i class="icon-ok-sign"></i></h2>
+			            <p>
+				            <strong>Dashboard</strong>
+				            <em>Get statistics on queries, frequency, most queried image,..</em>		
+				        </p>
+	            	</div>		                    		
+	            </div>
+                <div class="api-plan" style="width: 15%; min-height: 528px; ">	
+	                <h1>
+				                basic					</h1>
+			        <h2>$499</h2>
+	            	<em>per month<br>(Paid Annually)</em>	
+                    <div class="object">
+			           <p><strong>White-label mobile app (iOS/Android) or integration codes</strong></p>
+			           <h2>$0</h2>			
+	            	</div>	            	
+                    <div class="object">
+			           <p><strong>One-time setup</strong></p>
+			           <h2>$299</h2>			
+	            	</div>	    	        	            	
+                    <div class="object">
+                       <p><strong># of projects</strong></p>
+                       <h2>10</h2>			
+                    </div>   	            		
+			        <div class="object">
+			           <p><strong>IMAGES UPLOAD LIMIT</strong></p>
+			           <h2>1,000.</h2>
+	            	</div>
+			        <div class="object">
+			        <p><strong>QUERIES LIMIT</strong></p>
+			        <h2>10,000				 / mo.</h2>
+			        <p><em><span>$0.0900</span> per extra</em></p>
+		            </div>
+			        <div class="feature">
+			        <h2><i class="icon-ok-sign"></i></h2>
+			        <p>
+				        <strong>Dashboard, mail support</strong>
+				        <em>Get statistics on queries, frequency, most queried image,..</em>		
+			        </p>
+	            	</div>	
+	            	{% if g.user.is_authenticated() %}	
+			            <a href="/cart/basic" class="button grey">Subscribe</a>					
+			        {% else %}
+			            <a href="#" class="button grey" id="basic-subscribe">Subscribe</a>								            
+			            <script>
+			                $('#basic-subscribe').click(function(){
+			                    $('#login_modal').modal('show');
+			                    document.getElementById('next').value = '/cart/basic';			                    
+			                });
+			            </script>
+			        {% endif %}   
+                </div>
+                <div class="api-plan" style="width: 15%; min-height: 528px; ">	
+	                <h1>
+				                intermediate					</h1>
+			        <h2>$999</h2>
+	            	<em>per month<br>(Paid Annually)</em>	
+                    <div class="object">
+			           <p><strong>White-label mobile app (iOS/Android) or integration codes</strong></p>
+			           <h2>$0</h2>			
+	            	</div>	            	
+                    <div class="object">
+			           <p><strong>One-time setup</strong></p>
+			           <h2>$299</h2>			
+	            	</div>	    	        	            	
+                    <div class="object">
+                       <p><strong># of projects</strong></p>
+                       <h2>100</h2>			
+                    </div>   	            		
+			        <div class="object">
+			           <p><strong>IMAGES UPLOAD LIMIT</strong></p>
+			           <h2>5,000.</h2>
+	            	</div>
+			        <div class="object">
+			        <p><strong>QUERIES LIMIT</strong></p>
+			        <h2>50,000				 / mo.</h2>
+			        <p><em><span>$0.0400</span> per extra</em></p>
+		            </div>
+			        <div class="feature">
+			        <h2><i class="icon-ok-sign"></i></h2>
+			        <p>
+				        <strong>Dashboard, mail support</strong>
+				        <em>Get statistics on queries, frequency, most queried image,..</em>		
+			        </p>
+	            	</div>	
+	            	{% if g.user.is_authenticated() %}	
+			            <a href="/cart/intermediate" class="button grey">Subscribe</a>					
+			        {% else %}
+			            <a href="#" class="button grey" id="intermediate-subscribe">Subscribe</a>								            
+			            <script>
+			                $('#intermediate-subscribe').click(function(){
+			                    $('#login_modal').modal('show');
+			                    document.getElementById('next').value = '/cart/intermediate';			                    
+			                });
+			            </script>
+			        {% endif %}   
+                </div>                
+                <div class="api-plan recommended" style="width: 15%; min-height: 528px; ">
+			        <span class="ribbon">Best<br>Value</span>	
+	                <h1>
+				                premium					</h1>
+			        <h2>$1499</h2>
+	            	<em>per month<br>(Paid Annually)</em>	
+                    <div class="object">
+			           <p><strong>White-label mobile app (iOS/Android) or integration codes</strong></p>
+			           <h2>$0</h2>			
+	            	</div>		            	
+                    <div class="object">
+			           <p><strong>One-time setup</strong></p>
+			           <h2>$299</h2>			
+	            	</div>	    	            	
+                    <div class="object">
+                       <p><strong># of projects</strong></p>
+                       <h2>unlimited</h2>			
+                    </div>   	            	    	
+			        <div class="object">
+			        <p><strong>IMAGES UPLOAD LIMIT</strong></p>
+			        <h2>10,000.</h2>
+	            	</div>
+			        <div class="object">
+			        <p><strong>QUERIES LIMIT</strong></p>
+			        <h2>100,000				 / mo.</h2>
+			        <p><em><span>$0.0200</span> per extra</em></p>
+		            </div>
+			        <div class="feature">
+			        <h2><i class="icon-ok-sign"></i></h2>
+			        <p>
+				        <strong>Dashboard, mail/telephone support</strong>
+				        <em>Get statistics on queries, frequency, most queried image,..</em>		
+			        </p>
+	            	</div>		
+                    {% if g.user.is_authenticated() %}	
+			            <a href="/cart/premium" class="button green">Subscribe</a>					
+			        {% else %}
+			            <a href="#" class="button green" id="premium-subscribe">Subscribe</a>								            
+			            <script>
+			                $('#premium-subscribe').click(function(){
+			                    $('#login_modal').modal('show');
+			                    document.getElementById('next').value = '/cart/premium';			                    
+			                });
+			            </script>
+			        {% endif %}   
+                </div>
+	        </div>
+        </div>
+        <!-- End API pricing -->
+        <!-- footer -->
+        <div class="gallery-nav-wrapper" style="bottom: 0px;">
+            <div style="color:white;float:center;text-align:center;">
+                <h4>Need to run Yari on your own servers ? <a id="get_in_touch" href="/pricing">Get in touch</a> with us to discuss our white-label offer.</h4>
+                
+                <!--<div class="buy-box" style="margin-top:-30px;">
+	                <div class="wrapper">
+		                <div class="left"><strong>Need to run Yari on your own servers ?</strong> </div>
+		                <div class="right"><a href="/pricing">Get in touch</a></div>
+		                <div class="clearfix"></div>
+	                </div>
+                </div>-->
+                
+            </div>
+        </div>
+        
+        {% include "/footer.html" %}
+    </body>
+</html>                 

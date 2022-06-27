@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab docs content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>usage</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" />        
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" />         
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>          
+        <script src="/static/js/app.js"></script>  
+        <script src="/static/js/jquery.nicescroll.min.js"></script>        
+
+        <!-- components -->
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" />                
+        <link href="/static/dashboard/css/components.css" rel="stylesheet" type="text/css" />        
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+        {% include "/header.html" %}        
+        <br><br>
+        <div class="container">            
+            <h1>Usage Details</h1>
+            <h2 class="lead"><strong class="label label-success label-success-plan">{{ api_usage['plan'] }} plan</strong> - Available untill {{ api_usage['plan_expiring_date'].date() }}<br></h2>     
+            <hr><hr>       
+            <h2><b>{{ api_usage['current_month'] }}</b> usage</h2>
+            <hr>
+            <div class="row">
+                <div class="col-md-5 col-sm-5 col-xs-5 col-md-offset-1">
+				    <div class="stat-left">
+    				    <span class="mini-stat-icon tar-left">
+    				        <i class="fa fa-picture-o"></i>
+    				    </span>
+					    <div class="stat-number">
+						    <div class="title" id="unique-users-title">
+						    </div>
+						    <div class="number" id="unique-users-number">
+						    </div>
+						    <div class="title" id="users-insight-link">
+						        <b>Total Uploaded Visuals</b><br><p class="api-usage-numbers">{{ api_usage['visuals']['now'] }}/{{ api_usage['visuals']['limit'] }}</p>						             
+						    </div>
+					    </div>
+				    </div>
+			    </div>            
+			    <div class="col-md-6 col-sm-6 col-xs-6">
+				    <div class="stat-right">					    
+						<span class="mini-stat-icon tar-right">
+    				        <i class="fa fa-chart-line "></i>
+    				    </span>
+					    <div class="stat-number">
+						    <div class="title" id="total-queries-title">
+						    </div>
+						    <div class="number" id="total-queries-number">
+						    </div>
+						    <div class="title" id="queries-insight-link">
+    						    <b>{{ api_usage['current_month'] }} Queries</b><br><p class="api-usage-numbers">{{ api_usage['queries']['now'] }}/{{ api_usage['queries']['limit'] }}</p>
+                                {% if api_usage['queries']['now'] >= api_usage['queries']['limit'] %}						            
+						            {% if api_usage['plan'] == 'freemium' %}
+						                <p><br><div class="alert alert-error"> You have reached the queries month limit.</div>We do not tolerate extra queries in <b>freemium plan</b>. You need to upgrade your freemium plan and go for a paied one to reach more queries, visuals and our mail/telephone support.<br><br> Go to the <a href="/pricing">pricing page</a> to choose the most suitable plan for you</p>
+						            {% elif api_usage['queries']['now'] == api_usage['queries']['limit']  %}
+						                <p><br><div class="alert alert-error"> You have reached the queries month limit.</div>- An extra query for your <b>{{ api_usage['plan'] }} plan</b> costs: <b>{{ api_usage['queries']['query_excess_price'] }} $</b>.<br>- You will receive a summarization bill at the end of the month on the month extra consumption.</p>
+						            {% else %}
+    						            <p>
+    						                You have exceeded your queries month limit by:<br> <strong class="label label-danger">+ {{ api_usage['queries']['now'] - api_usage['queries']['limit'] }}</strong><br>- An extra query for your {{ api_usage['plan'] }} plan costs: <b>{{ api_usage['queries']['query_excess_price'] }} $</b>.<br>- You can pay monthly your extras at the end of the month (a new bill will appear). Or, you have the possibility to upgrade your plan and go for higher consumption limits.<br>- Go to the <a href="/pricing">pricing page</a> to upgrade.
+    						            </p>
+    						        {% endif %}      						    
+    						    {% endif %}    
+						    </div>
+					    </div>
+				    </div>
+			    </div>	
+			    <h2>Extra consumption Bills</h2>
+			    <hr>
+                <div class="table-responsive">                
+                    <table class="table table-bordered">                
+                        <thead>  
+                            <tr>
+                                <th>Bill #</th>
+                                <th>Month</th>
+                                <th>Extra queries</th>
+                                <th>Deadline</th>                                                                
+                                <th>Total</th>                                
+                                <th>State</th>
+                            </tr>
+                        </thead>                    
+                        <tbody>                  
+                            {% for bill in bills %}
+                            {% if bill.bill_type == 'extra' %}
+                            <tr>     
+                                                 
+                                <td>{{ bill.id }}</td>
+                                <td>{{ bill.paiement_date.date().year }}-{{ bill.paiement_date.date().month }}</td>
+                                <td>{{ bill.extra_queries }}</td>
+                                <td>{{ bill.paiement_date.date().year }}-{{ bill.paiement_date.date().month+2 }}-30</td>                                
+                                <td>{{ bill.total }}</td>
+                                <td>
+                                {% if bill.state == 0 %}
+                                    <button class="btn btn-danger btn-small">Pay</button>
+                                {% else %}
+                                    <strong class="label label-success">Paied</strong>    
+                                {% endif %}
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>    
+                    </table>   
+                </div>    
+			    <h2>Plan Bills</h2>
+			    <hr>
+                <div class="table-responsive">                
+                    <table class="table table-bordered">                
+                        <thead>  
+                            <tr>
+                                <th>Bill #</th>
+                                <th>Paiement Date</th>
+                                <th>Plan</th>
+                                <th>Total</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>                    
+                        <tbody>                  
+                            {% for bill in bills %}
+                            {% if bill.bill_type == 'plan' %}
+                            <tr>     
+                                                 
+                                <td>{{ bill.id }}</td>
+                                <td>{{ bill.paiement_date.date() }}</td>
+                                <td>{{ bill.plan }}</td>
+                                <td>{{ bill.total }}</td>
+                                <td>
+                                <strong class="label label-success">Paied</strong>    
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>    
+                    </table>   
+                </div>    
+                
+            </div> <!-- ./ row -->
+        </div>  
+        
+        {% include "/footer.html" %}
+    </body>
+</html>         

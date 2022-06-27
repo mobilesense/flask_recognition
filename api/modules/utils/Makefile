@@ -1,0 +1,61 @@
+.SUFFIXES: .c .o .swg 
+
+include ../compile/makefile.inc
+
+CC=gcc
+FLAGS=$(CFLAGS) -I.. $(YAELCFLAGS)
+
+
+all: generic_hash_table.o fast_alloc.o _utils.so hkm.o pq.o pqr.o annvw.o mmap_and_lock
+
+
+#############################
+# Various  
+
+.c.o:
+	$(CC)  -c $< -o $@ $(FLAGS) $(EXTRACFLAGS)
+
+
+nn.o: EXTRACFLAGS=$(LAPACKCFLAGS) $(THREADCFLAGS)
+
+utils_wrap.o: EXTRACFLAGS=$(PYTHONCFLAGS)
+
+mmap_and_lock: mmap_and_lock.c
+	$(CC) $(CFLAGS) -o $@ $<
+
+
+
+#############################
+# Python wrapper 
+
+
+utils_wrap.c : utils.swg hkm.h pq.h ivfpq.h ../yael/common.swg trees.h
+	$(SWIG) -I.. $< 
+
+# When yael becomes independent: add $(YAELOBJS)
+_utils.so: utils_wrap.o hkm.o pq.o pqr.o ivfpq.o trees.o fast_alloc.o annvw.o 
+	$(CC) $(LDFLAGS) -o $@ $(WRAPLDFLAGS) $^ $(PYTHONLDFLAGS) $(LAPACKLDFLAGS) $(THREADLDFLAGS) $(YAELLDFLAGS)
+
+
+#############################
+# Dependencies  
+
+annvw.o: annvw.c ../yael/vector.h ../yael/nn.h ../yael/sorting.h
+fast_alloc.o: fast_alloc.c fast_alloc.h
+generic_hash_table.o: generic_hash_table.c generic_hash_table.h
+hkm.o: hkm.c ../yael/vector.h ../yael/nn.h ../yael/clustering.h \
+  ../yael/sorting.h hkm.h
+ivfpq.o: ivfpq.c ../yael/vector.h ../yael/nn.h ../yael/sorting.h \
+  ../yael/machinedeps.h ivfpq.h pq.h generic_hash_table.h
+mmap_and_lock.o: mmap_and_lock.c
+pq.o: pq.c ../yael/sorting.h ../yael/vector.h ../yael/clustering.h \
+  ../yael/nn.h pq.h
+trees.o: trees.c trees.h fast_alloc.h
+
+
+indent: generic_hash_table.c fast_alloc.c
+	$(INDENT) $^
+
+clean:
+	rm -f *.o utils.py *.pyc utils_wrap.c _utils.so 
+

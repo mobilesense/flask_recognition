@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab docs content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>query</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" />        
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" />         
+        <link href="/static/css/sim.css" rel="stylesheet" type="text/css" />                        
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>                           
+        <script src="/static/js/app.js"></script> 
+        <script src="/static/js/jquery.nicescroll.min.js"></script>         
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+        {% include "/header.html" %}
+        <div class="container">
+            <br>
+            <h1>Image Database Management</h1>
+            <h2 class="lead">Query, Update, Analyse database </h2>
+            <div>
+                <ul class="nav nav-tabs">
+                    <li><a href="/manage/projects/all">Update DB</a></li>
+                    <li class="active"><a href="/query">Query DB</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                </ul>
+            </div> 
+            <div class="row">               
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <h3>Mobile App Customization</h3>                                                       
+                </div>
+                
+                <div class="col-xs-12 col-sm-6 col-md-6" style="right:0; padding-left: 300px;margin-top:20px;">        
+                    <a href="/query/edit" class="btn btn-default btn-edit" rel="tooltip" data-original-title="Edit app"><i class="icon-large icon-edit"></i></a> 
+                </div>                                    
+                <!-- TODO mobile app rendering -->
+                <div class="col-xs-12 col-sm-6 col-md-12" >
+                <hr>
+                    <div class="col-xs-12 col-sm-6 col-md-5 col-md-offset-1" >                
+                        <br>
+                        <blockquote>
+                            <ul>
+                                <li>By clicking to send button, the app is compiled and download link is sent by mail. This can take some time.</li>
+                                <li>You can install the app on your phone by simply clicking on this link using your phone.</li>
+                                <li>You are able also to make it public for your users by putting it to Google Play / Apple Store.  </li>
+                            </ul>
+                        </blockquote>    
+                        {% if send_state and send_state == 'success' %}
+                            <div class="alert alert-success">App download link sent. Please check your mail inbox.</div>
+                        {% elif send_state and send_state == 'fail' %}   
+                            <div class="alert alert-error">Your app is not yet edited. </div>                
+                        {% endif %}                           
+                        <a href="/query/send" class="btn btn-success">
+                            <i class="icon-large icon-envelope icon-white"></i> Send app download link
+                        </a>
+                     </div>       
+                     <div class="col-xs-12 col-sm-6 col-md-4" >                
+                        mobile rendering
+                        <div  class="col-lg-3 col-md-offset-1" style="margin-left:80px;">
+                            <div id="sim-container">
+                                <div id="sim-area">
+                                    <div id="sim-logo">
+                                        <img src="/static/img/mail_logo.png" width="60px" height="30px" />
+                                    </div>
+                                    <div id="sim-website">{{ mobile.website }}</div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                     <div class="col-xs-12 col-sm-6 col-md-2 col-md-offset-0" >                                        
+                        <img src="{{ mobile.icon_url }}"></img>
+                     </div>    
+                </div>              
+            </div>        
+        </div>  <!--./container -->  
+        <script>
+            $(document).ready(function(){
+                // tooltip
+                $("[rel='tooltip']").tooltip();         
+                
+                // init
+                $("#sim-area").css("background-color", '{{ mobile.splash_color }}'); 
+                $("#sim-website").css("color", '{{ mobile.font_color }}');
+                $('#sim-website').text('{{ mobile.website }}');            
+                $("#sim-website").css("font-family", '{{ mobile.font }}');                        
+                $("#sim-website").css("font-size", {{ mobile.font_size }}+"px");                        
+                $("#selRange").html({{ mobile.font_size }});
+                if('{{ mobile.bold }}' == 'True')                
+                    $("#sim-website").css("font-weight", "bold");
+                else    
+                    $("#sim-website").css("font-weight", "normal");                                    
+                //
+            });                        
+        </script>        
+        {% include "/footer.html" %}
+    </body>
+</html>              

@@ -1,0 +1,22 @@
+- 1000 simultaneous connexions and see matching, time results
+
+Nginx
+------
+- a worker is a process
+- one worker per CPU
+- each worker can handle up to 1000 connexion
+
+flask + tornado(wsgi server) + nginx (web server)
+-------------------------------------------------
+http://stackoverflow.com/questions/14749655/setting-up-a-tornado-web-service-in-production-with-nginx-reverse-proxy
+http://flask.pocoo.org/docs/0.10/deploying/wsgi-standalone/
+https://gist.github.com/ewheeler/1262989
+http://www.peterbe.com/plog/worrying-about-io-blocking
+http://serverfault.com/questions/293797/nginx-as-proxy-to-tornado-301-redirect
+
+
+Work to do for app production and demo
+--------------------------------------
+0. repository
+1. work on imbase2: change imbase/manage to imbase of client_server (coded to be executed on 1 thread)
+2. 

@@ -1,0 +1,146 @@
+<hr>
+<!-- login form -->
+<div class='modal hide' id='login_modal'>
+    <div class='modal-header'>
+        <button type='button' class='close' data-dismiss='modal'>✕</button>
+        <h3>Login</h3>
+        <hr class='colorgraph'>
+    </div>
+        <div class='modal-body' style='text-align:center;'>
+        <div class='row-fluid'>
+            <div class='span10 offset1'>
+                <div id='modalTab'>
+                    <div class='tab-content'>
+                        {% if not g.user.is_authenticated() %} 
+                        <div class='tab-pane active' id='login'>
+                            <form method='post' action='/login'>
+                                {% if login_form %}                
+                                    {{ login_form.hidden_tag() }}  
+                                {% endif %}                                 
+                                <input type="hidden" name="next" id="next">             
+                               
+                                {% with messages = get_flashed_messages(category_filter=["login_error"]) %}
+                                    {% if messages %}                                        
+                                        {% for message in messages %}
+                                            <div class="alert alert-error">{{ message }}</div>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endwith %}       
+                                <div class="form-group {% if login_form.username.errors %} has-error {% endif %}">                         
+                                    <input type='text' class='span12' name='username' placeholder='Username'>
+                                    <p class="col-sm-5 help-block">
+                                    {{ login_form.username.errors[0] }}
+                                    </p>
+                                </div>    
+                                <div class="form-group {% if login_form.password.errors %} has-error {% endif %}" >                         
+                                   <input type='password' class='span12' name='password' placeholder='Password'></p>
+                                   <p class="col-sm-5 help-block">
+                                    {{ login_form.password.errors[0] }}
+                                   </p>
+                                </div>   <br>
+                                <div id="remember_me_div">
+                                	<input class='pull-left' type='checkbox' name='remember_me' value='1' id='remember_me'>  
+                                	<label class='pull-left' for='rm'>Remember Me</label>
+                                </div>
+                                <div class='clearfix'></div>                                
+                                                                
+                                <input class='btn btn-large-login btn-success btn-block' type='submit' value='Log in'>
+                                <p class='text-center' style='margin-top:10px;'>OR</p>
+                                <a class='btn btn-default btn-block' href="{{ google_login_urls[0] }}"><i class='icon-google'></i> Login with Google1</a><br>
+                                <a class='btn btn-default btn-block' href="{{ google_login_urls[1] }}"><i class='icon-google'></i> Login with Google2</a><br>
+                                <a class='btn btn-default btn-block' href="{{ google_login_urls[2] }}"><i class='icon-google'></i> Login with Google3</a><br>
+                                <a href='#forgotpassword' data-toggle='tab' id="forget-pass-link">Forgot Password?</a> or 
+                                <a href='/register'>Register</a> if not a member                                
+                                </p>
+                            </form>
+                        </div>
+                        <div class='tab-pane fade' id='forgotpassword'>
+                            <form method='post' action='/forgot_password'>
+                                <!--<input type="hidden" name="currentPageReset" id="currentPageReset">-->
+                                                                                                
+			                    <div class="form-group">				                    
+                                    {% if reset_form %}                
+                                        {{ reset_form.hidden_tag() }}  
+                                    {% endif %}  
+			                    
+				                    {% with messages = get_flashed_messages(category_filter=["reset_form_error"]) %}
+                                        {% if messages %}                                        
+                                            {% for message in messages %}
+                                                <div class="alert alert-error">{{ message }}</div>
+                                            {% endfor %}                                            
+                                        {% elif not get_flashed_messages(category_filter=["reset_form_log"]) %}
+                                            <p>Hey this stuff happens, give us your email and we'll sent you a link to reset it!</p>    
+                                        {% endif %}
+                                    {% endwith %}
+                                    {% with messages = get_flashed_messages(category_filter=["reset_form_log"]) %}
+                                        {% if messages %}                                        
+                                            {% for message in messages %}
+                                                <div class="alert alert-success">{{ message }}</div>
+                                            {% endfor %}
+                                        {% else %}  
+                                            <div class="form-group {% if reset_form.mail.errors %} has-error {% endif %}">                            
+                                                <input type="email" name="mail" class="form-control input-lg" placeholder="Put your mail here" tabindex="4">
+                                                <p class="col-sm-5 help-block">
+                                                {{ reset_form.mail.errors[0] }}
+                                                </p>
+                                            </div>                                                
+                                            <p>
+                                                <button type='submit' class='btn btn-primary'>Submit</button>
+                                        
+                                                <a href='#login' data-toggle='tab'>Wait, I remember it now!</a>
+                                            </p> 
+                                        {% endif %}
+                                    {% endwith %}                                                                          
+			                    </div>			                                       
+                            </form>
+                        </div>                     
+                    {% endif %}    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>     
+
+<div class='modal hide' id='resetsuccess_modal'>
+    <div class='modal-header'>
+    </div>
+    <div class='modal-body' style='text-align:center;'>
+        <div class="alert alert-success">Reset link sent. Please check your mail inbox</div>
+    </div>
+</div>
+        
+<script>    
+    currentPage = document.URL.split(window.location.host)[1];    
+    document.getElementById("next").value = currentPage;
+    var formErrors = {% if get_flashed_messages(category_filter=["login_error"]) %}true{% else %}false{% endif %};
+    $(document).ready(function() {
+        if (formErrors) {
+            $('#resetsuccess_modal').modal('hide');
+            $('#login_modal').modal('show');
+        }
+    });
+    var resetformErrors = {% if get_flashed_messages(category_filter=["reset_form_error"]) %}true{% else %}false{% endif %};
+    var resetformSuccess = {% if get_flashed_messages(category_filter=["reset_form_log"]) %}true{% else %}false{% endif %};
+
+    $(document).ready(function() {
+        if (resetformErrors) {
+            $('#resetsuccess_modal').modal('hide');
+            $('#login_modal').modal('show');
+            $('#forget-pass-link').click();
+        }
+        else if (resetformSuccess) {       
+            $('#login_modal').modal('hide');
+            $('#resetsuccess_modal').modal('show');
+        }
+    });    
+</script>         
+<!-- Footer
+================================================== -->
+<footer class="footer">
+  <div class="container">
+    <p>Designed and built by <a href="/">Yarilab</a> company.</p>
+    <p>All Rights Reserved. Copyright 2014.</p>
+  </div>
+</footer>       
+<!-- TODO put google analytics here -->

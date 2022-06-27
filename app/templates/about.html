@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab docs content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>about</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" />        
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" />         
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <link href="/static/css/thmbnail_caption.css" rel="stylesheet">
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>  
+        <script src="/static/js/app.js"></script>  
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <script src="/static/js/jquery.nicescroll.min.js"></script>        
+        <link href="/static/dashboard/css/components.css" rel="stylesheet" type="text/css" />        
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+        {% include "/header.html" %}
+
+        <div class="container"> 
+            <br>
+            <div class="row-fluid">
+                <div class="span8">
+                    <div>
+                        <h1>About Yari</h1>
+                        <p>
+                        Yari was founded in 2014 in the purpose of linking the physical world (paper based marketing channels, ..) to the online world. With our great talents in computer vision and machine learning fields this reality became true. A user starts by snapping a product/advertisement picture using our mobile application, then he will get redirected to the its purchase page or whatever metadata given for this product picture. This is done using the most scalable and accurate content based image recognition technology. 
+                        </p> 
+                    </div>
+                    <div>
+                        <h1>Contact</h1>
+                        <div class="contact-map content-box pad10A">
+                            <iframe src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Brooklyn,+New+York,+NY,+United+States&amp;aq=0&amp;sll=37.0625,-95.677068&amp;sspn=61.282355,146.513672&amp;ie=UTF8&amp;hq=&amp;hnear=Brooklyn,+Kings,+New+York&amp;ll=40.649974,-73.950005&amp;spn=0.01628,0.025663&amp;z=14&amp;iwloc=A&amp;output=embed"> </iframe>
+                            
+                        </div><br>
+                        <div class="row">
+			    <b>Address</b>
+			    <p>Yarilab Inc.<br>2 Rue Antoine Chollier, 38100 Grenoble, France</p>
+			    <i class="icon icon-earphone"></i><b>Telephone</b>
+			    <p>(+33) 6.35.28.61.94</p>
+			    <br><p>For <b>technical</b>, <b>sales</b> or <b>press</b> questions please contact us using the bottom right assistant.</p> 	
+                        </div>
+                    </div>        
+                </div>
+                <div class="span4">
+                    <h3>Team</h3>
+                    <p>
+                        <strong><a href="#">Amine Ayari</a></strong>
+                        <br>
+                        Founder & CEO of Yari<br>
+                        <div class="thumbnail" style="width:200px; height:200px;">
+                            <div class="caption" style="width:200px; height:200px;">
+                                <br><br>
+                                <h4>Social Media</h4>
+                                <p>
+                                    <a href="http://www.linkedin.com/pub/mohamed-amine-ayari/10/548/897" class="label label-danger" rel="tooltip" title="linkedin" target="_blank"><img src="/static/img/linkedin.png" width="20" height="20"/></a>
+                                    <!--<a href="#" class="label label-danger" rel="tooltip" title="twitter" target="_blank"><img src="/static/img/twitter.png" width="20" height="20"/></a>-->                
+                                </p>
+                            </div>
+                            <img src="/static/img/med_amine_ayari.jpg" alt="Amine" >
+                        </div>
+                        <p><i class="icon icon-envelope"></i>  amine@yarilab.com</p>
+                    </p>
+                    <p>
+                        <strong><a href="#">xx xx</a></strong>
+                        <br>
+                        COO of Yari<br>
+                        <div class="thumbnail" style="width:200px; height:200px;">
+                            <div class="caption" style="width:200px; height:200px;">
+                                <br><br>
+                                <h4>Social Medias</h4>
+                                <p>
+                                    <a href="http://www.linkedin.com/pub/mohamed-amine-ayari/10/548/897" class="label label-danger" rel="tooltip" title="linkedin" target="_blank"><img src="/static/img/linkedin.png" width="20" height="20"/></a>
+                                    <!--<a href="http://www.linkedin.com/pub/mohamed-amine-ayari/10/548/897" class="label label-danger" rel="tooltip" title="twitter" target="_blank"><img src="/static/img/twitter.png" width="20" height="20"/></a>-->
+                                </p>
+                            </div>
+                            <img src="/static/img/xx.jpg" alt="Amine" >
+                        </div>
+                        <p><i class="icon icon-envelope"></i>  xx@yarilab.com</p>
+                    </p>                 
+                </div>
+            </div>                                   
+        </div>
+
+        <script>
+            $( document ).ready(function() {
+                $("[rel='tooltip']").tooltip();    
+             
+                $('.thumbnail').hover(
+                    function(){
+                        $(this).find('.caption').slideDown(250); //.fadeIn(250)
+                    },
+                    function(){
+                        $(this).find('.caption').slideUp(250); //.fadeOut(205)
+                    }
+                ); 
+            });
+        </script>
+        
+        {% include "/footer.html" %}
+    </body>
+</html>                 

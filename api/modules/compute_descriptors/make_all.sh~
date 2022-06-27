@@ -1,0 +1,23 @@
+#!/bin/tcsh
+
+# rm -fr */Debug/* */lib*.a
+ 
+cd ImageContent
+mkdir -p Debug
+make
+cd ../gauss_iir
+mkdir -p Debug
+make
+cd ../descriptor
+mkdir -p Debug
+make
+cd ../matrix
+mkdir -p Debug
+make
+cd ../util
+mkdir -p Debug
+make
+cd ../compute_descriptors
+make OBJDIR=./Debug
+
+cd ../

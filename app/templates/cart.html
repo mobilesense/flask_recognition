@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab docs content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>cart</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" />        
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" />         
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>          
+        <script src="/static/js/app.js"></script>  
+        <script src="/static/js/jquery.nicescroll.min.js"></script>        
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+        {% include "/header.html" %}
+
+        <div class="container">                   
+            <div class="container mk802-cart">
+                <div class="row">
+                    <div class="span12">
+                    <div class="page-header">                        
+                        <h1>
+                            <i class="icon icon-shopping-cart"></i>Cart
+                            <small>- secure online payments provided by 2Checkout</small> 
+                            <img class="pull-right" src="https://www.miniand.com/assets/ico_lock-3b965616102160e479fadf366ada2a91.png">
+                        </h1>
+                    </div>
+                </div>
+            </div>
+
+            <form accept-charset="UTF-8" action="/cart/review" class="form-horizontal ng-scope ng-valid ng-valid-required ng-dirty" method="POST" name="session-cart">
+                <div style="margin:0;padding:0;display:inline">
+                    <input name="utf8" type="hidden" value="✓">
+                </div>
+                <div class="cart-address-form ng-scope" ng-controller="CartAddressCtrl">
+                    <div class="row">
+                        <div class="span12">
+                        <h3>Billing informations</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span5">                         
+                            <div class="control-group" ng-show="isAdmin || mode == &quot;edit&quot; || cart.address.first_name" style="">
+                                <label class="control-label" for="chosen-plan">
+                                Chosen plan
+                                </label>
+                                <div class="controls">
+                                    <input type="text" value="{{ requested_plan }}" class="field left" readonly>                   
+                                </div>
+                            </div>
+                            <div class="control-group" ng-show="isAdmin || mode == &quot;edit&quot; || cart.address.first_name" style="">
+                                <label class="control-label" for="first-name">
+                                First name
+                                </label>
+                                <div class="controls">
+                                    <input id="first-name" ng-disabled="mode != &quot;edit&quot;" ng-model="cart.address.first_name" type="text" class="ng-pristine ng-valid">
+                                </div>
+                            </div>
+                            
+                            <div class="control-group" ng-show="isAdmin || mode == &quot;edit&quot; || mode == &quot;edit&quot; || cart.address.first_name" style="">
+                                <label class="control-label" for="last-name">
+                                Last name
+                                </label>
+                                <div class="controls">
+                                    <input id="last-name" ng-disabled="mode != &quot;edit&quot;" ng-model="cart.address.last_name" type="text" class="ng-pristine ng-valid">
+                                </div>
+                            </div>
+                            <div class="control-group" ng-show="cart.address.ship_to" style="display: none; ">
+                                <label class="control-label" for="ship-to">
+                                Ship to
+                                </label>
+                                <div class="controls">
+                                    <input id="ship-to" ng-disabled="mode != &quot;edit&quot;" ng-model="cart.address.ship_to" type="text" class="ng-pristine ng-valid">
+                                </div>
+                            </div>
+                            <div class="control-group" ng-show="isAdmin || mode == &quot;edit&quot; || cart.address.first_name" style="">
+                                <label class="control-label" for="phone">
+                                <abbr title="Our couriers require this in case of problems finding your address.">Phone</abbr>
+                                </label>
+                                <div class="controls">
+                                  <input id="phone" ng-disabled="mode != &quot;edit&quot;" ng-model="cart.address.phone" type="text" class="ng-pristine ng-valid">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="country">
+                                Country
+                                </label>
+                                <div class="controls">
+                                    <select name="country">
+                                        <option value="AF">Afghanistan</option>
+                                        <option value="AL">Albania</option>
+                                    </select> 
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="span5">
+                            <div class="control-group" ng-show="isAdmin || mode == &quot;edit&quot; || cart.address.address1 || cart.address.address2" style="">
+                                <label class="control-label" for="address1">
+                                Address
+                                </label>
+                                <div class="controls">
+                                    <input id="address1" ng-disabled="mode != &quot;edit&quot;" ng-model="cart.address.address1" type="text" class="ng-pristine ng-valid">
+                                    <input id="address2" ng-disabled="mode != &quot;edit&quot;" ng-model="cart.address.address2" type="text" class="ng-pristine ng-valid">
+                                </div>
+                            </div>
+                            <div class="control-group" ng-show="isAdmin || mode == &quot;edit&quot; || cart.address.first_name" style="">
+                                <label class="control-label" for="city">
+                            City
+                            </label>
+                            <div class="controls">
+                                <input id="city" ng-disabled="mode != &quot;edit&quot;" ng-model="cart.address.city" type="text" class="ng-pristine ng-valid">
+                            </div>
+                        </div>
+                        <div class="control-group" ng-show="isAdmin || mode == &quot;edit&quot; || cart.address.first_name" style="">
+                            <label class="control-label" for="state">
+                                <abbr title="If there is no state / province for your address, please use a dash (-).">State / province</abbr>
+                            </label>
+                            <div class="controls">
+                                <input id="state" ng-disabled="mode != &quot;edit&quot;" ng-model="cart.address.state" type="text" class="ng-pristine ng-valid">
+                            </div>
+                        </div>
+                        <div class="control-group" ng-show="isAdmin || mode == &quot;edit&quot; || cart.address.first_name" style="">
+                            <label class="control-label" for="zip">
+                                <abbr title="If there is no zip / postal code for your address, please use a dash (-).">Zip / postal code</abbr>
+                            </label>
+                            <div class="controls">
+                                <input id="zip" ng-disabled="mode != &quot;edit&quot;" ng-model="cart.address.zip" type="text" class="ng-pristine ng-valid">
+                            </div>
+                        </div>
+                    </div> <!-- ./row -->
+                </div> <!-- ./cart -->
+
+                <div class="row">
+                    <div class="span12">
+                        <label>
+                        <h3>
+                        Bill
+                        </h3>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="span12">
+                        <table class="table table-bordered table-striped ng-scope" ng-controller="CartItemsCtrl" ng-init="variants = []">
+                            <tbody>
+                                <tr>
+                                    <th>SKU</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Qty</th>
+                                    <th>
+                                    </th>
+                                </tr>
+                                <!-- ngRepeat: item in cart.items -->
+                                <tr>
+                                    <th class="mk802-cart-side-heading" colspan="4">
+                                    Subtotal
+                                    </th>
+                                    <td class="mk802-cart-subtotal ng-binding">$0.00</td>
+                                </tr>
+                                <tr>
+                                    <th class="mk802-cart-side-heading" colspan="4">Tax total</th>
+                                    <td class="mk802-cart-shipping">
+                                        <input class="input-mini ng-pristine ng-valid ng-valid-number ng-valid-min" min="0" ng-model="cart.shipping" ng-show="isAdmin &amp;&amp; mode == &quot;edit&quot;" step="0.01" type="number" style="display: none; ">
+                                        <span ng-hide="isAdmin &amp;&amp; mode == &quot;edit&quot;" class="ng-binding" style="">$0.00</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                <th class="mk802-cart-side-heading" colspan="4">Total</th>
+                                <td class="mk802-cart-total ng-binding">USD $0.00</td>
+                                </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span4 mk802-cart-logos"></div>                                        
+                    <script>
+                        var islg = '<?php echo $user->islg()?>';
+                        if (!islg){
+                            $('div.btn.btn-success.btn-xlarge').attr('disabled', true);
+                        }  
+                        else {
+                            $('div.btn.btn-success.btn-xlarge').attr('disabled', false);
+                        }      
+                        $('div.btn.btn-success').click(function() {        
+                            if( $('div.btn.btn-success.btn-xlarge').attr('disabled')!="disabled"){
+                                alert("cc");
+                            }
+                        });
+                    </script>
+                    <div class="span6 mk802-cart-logos">
+                        <img src="/static/img/cards_visa.png">
+                        <img src="/static/img/cards_mastercard.png">
+                        <img src="/static/img/cards_americanexpress.png">
+                        <img src="/static/img/cards_diners.png">
+                        <img src="/static/img/cards_discover.png">
+                        <img src="/static/img/cards_jcb.png">
+                        <img src="/static/img/cards_paypal.png">
+                    </div>
+                    <div class="span4 mk802-pay-now-btn-container" style="margin-left:60px;">
+                        <div class="btn btn-success btn-lg btn-block">Go to payment page ►</div>
+                    </div>
+                </div>
+            </form>          
+            <div id="card_paypal"></div>   
+        </div><!-- ./container -->            
+</body>
+
+</html>

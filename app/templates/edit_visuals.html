@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- yarilab docs content -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>edit visuals</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link rel="shortcut icon" href="/static/ico/favicon.png">        
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/docs.css" rel="stylesheet" type="text/css" />        
+        <link href="/static/css/caption.css" rel="stylesheet" type="text/css" />                
+        <link href="/static/css/pagination.css" rel="stylesheet" type="text/css" />                        
+        <link href="/static/dashboard/css/font-awesome.css" rel="stylesheet" type="text/css" />         
+        <link href="/static/css/style.css" rel="stylesheet" type="text/css" />        
+        <script src="/static/js/jquery-1.8.2.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>          
+        <script src="/static/js/caption.js"></script>          
+        <script src="/static/js/app.js"></script>  
+        <script src="/static/js/jquery.nicescroll.min.js"></script>        
+    </head>
+    
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
+        {% include "/header.html" %}
+        <div class="container">     
+            <br>
+            <h1>Image Database Management</h1>
+            <h2 class="lead">Query, Update, Analyse database </h2>
+            <div>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="/manage/projects/all">Update DB</a></li>
+                    <li><a href="/query">Query DB</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                </ul>
+            </div>            
+             <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <h3 class="panel-title"><a href="/manage/projects/all">Projects</a>/{{ project_name }}/visuals</h3>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6" style="padding-top:15px; right:0; padding-left: 428px;">    
+                    <a href="/manage/{{ project_id }}/visuals/add" class="btn btn-default btn-edit" rel="tooltip" data-original-title="add visual"><i class="icon-large icon-plus"></i></a>
+                </div>    
+            </div>                
+            <hr>
+            {{ pagination.info|safe }}
+            <ul class="thumbnails" id="hover-cap-4col">
+            {% for visual in visuals %}
+                <li class="span2 visuali">
+                  <div class="thumbnail">
+                    <div class="caption" style="display: none;">
+                        <h4>{{ visual.name }}</h4>
+                        <p>{{ visual.meta }}</p>                        
+                        <p>
+                            <a href="/manage/visual/edit/{{ visual.id }}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="edit">
+                                <i class="icon-edit icon-white"></i>
+                            </a> 
+                            <button type="button" class="btn btn-danger delete" data-type="DELETE" data-url="/visual/delete/{{ visual.id }}" rel="tooltip" data-original-title="delete"><i class="icon-trash icon-white"></i></button>
+                            
+                        </p>
+                    </div>
+                    <img src="{{ visual.url }}" width="100" height="100" alt="{{ visual.name }}">
+                  </div>
+                  <h4>{{ visual.name }}</h4>
+                </li>
+            {% endfor %}        
+            </ul>
+            {{ pagination.links|replace("[u'","")|replace("']","")|safe }}            
+            
+            <script>
+                // delete request sender
+                $("button.btn.btn-danger.delete").click(function() {                                        
+                    var li = $(this).closest("li");
+                    $.ajax({
+                        url: $(this).attr("data-url"),
+                        type: $(this).attr("data-type")
+                    }).done(function() {
+                        li.remove();
+                    });                    
+                });
+            </script>
+
+
+        </div> <!-- ./ container -->   
+        {% include "/footer.html" %}
+    </body>
+</html>       
